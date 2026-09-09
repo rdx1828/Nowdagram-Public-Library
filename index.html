@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>নওদাগ্রাম গণগ্রন্থাগার ও সামাজিক কেন্দ্র</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts (Hind Siliguri for Bengali) -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            libBg: '#FDFBF7',
+            libCream: '#F4EFE6',
+            libGreen: '#1B4332',
+            libGreenLight: '#2D6A4F',
+            libGold: '#D4AF37',
+            libGoldHover: '#B59226',
+            libTerracotta: '#C05A46',
+            libText: '#2B2D42'
+          },
+          fontFamily: {
+            sans: ['Hind Siliguri', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FDFBF7;
+      color: #2B2D42;
+      font-family: 'Hind Siliguri', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(3deg); }
+    }
+    .animate-float {
+      animation: floatSlow 4s ease-in-out infinite;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    /* QUOTE FADE ANIMATION */
+    .quote-transition {
+      transition: opacity 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="bg-libGreen text-amber-200 text-xs md:text-sm py-2 px-4 border-b border-libGold/30">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-2 space-x-reverse">
+        <span class="animate-bounce">📢</span>
+        <span>নওদাগ্রাম গণগ্রন্থাগারে নতুন ৫০০ টি বই সংযোজিত হয়েছে! মেম্বারশিপ নিতে আজই ফরম পূরণ করুন।</span>
+      </div>
+      <div class="hidden md:flex items-center space-x-4 space-x-reverse text-xs">
+        <span><i class="fa-solid fa-clock ml-1"></i> খোলা: সকাল ৯:০০ - রাত ৯:০০</span>
+        <span><i class="fa-solid fa-phone ml-1"></i> +৮৮০ ১৭০০-০০০০০০</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="sticky top-0 z-40 bg-libCream/90 backdrop-blur-md border-b border-libGold/30 shadow-sm">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- LOGO -->
+      <a href="#" class="flex items-center space-x-3 space-x-reverse">
+        <img src="logo.jpg" alt="নওদাগ্রাম গণগ্রন্থাগার লোগো" class="w-11 h-11 rounded-full object-cover shadow-md border-2 border-libGold animate-float">
+        <div>
+          <h1 class="text-xl md:text-2xl font-bold text-libGreen leading-tight">নওদাগ্রাম গণগ্রন্থাগার</h1>
+          <p class="text-[11px] md:text-xs text-libGreen/80 font-semibold tracking-wider">NOWDAGRAM PUBLIC LIBRARY</p>
+        </div>
+      </a>
+
+      <!-- DESKTOP MENU -->
+      <div class="hidden lg:flex items-center space-x-6 space-x-reverse font-medium text-libGreen text-sm">
+        <a href="administration.html" class="hover:text-libGold transition">পরিচালনা পরিষদ</a>
+        <a href="all-books.html" class="hover:text-libGold transition">বইয়ের তালিকা</a>
+        <a href="#blood" class="hover:text-libGold transition">রক্তদান সেবা</a>
+        <a href="#courses" class="hover:text-libGold transition">শিক্ষা ও কোর্স</a>
+        <a href="transparency-donate.html" class="hover:text-libGold transition">হিসাব-নিকাশ</a>
+        <a href="contact.html" class="hover:text-libGold transition">যোগাযোগ</a>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="hidden sm:flex items-center space-x-3 space-x-reverse">
+        <button onclick="openModal('memberModal')" class="bg-libGold hover:bg-libGoldHover text-libGreen font-bold px-4 py-2 rounded-lg shadow-md text-xs transition transform hover:-translate-y-0.5">
+          <i class="fa-solid fa-id-card ml-1"></i> সদস্য হন
+        </button>
+      </div>
+
+      <!-- MOBILE MENU BUTTON -->
+      <button onclick="toggleMobileMenu()" class="lg:hidden text-2xl text-libGreen focus:outline-none">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- MOBILE DROPDOWN MENU -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-libCream border-t border-libGold/30 px-4 py-3 space-y-2 text-sm">
+      <a href="administration.html" onclick="toggleMobileMenu()" class="block py-1 hover:text-libGold">পরিচালনা পরিষদ</a>
+      <a href="all-books.html" onclick="toggleMobileMenu()" class="block py-1 hover:text-libGold">বইয়ের তালিকা</a>
+      <a href="transparency-donate.html" onclick="toggleMobileMenu()" class="block py-1 hover:text-libGold">হিসাব-নিকাশ</a>
+      <a href="contact.html" onclick="toggleMobileMenu()" class="block py-1 hover:text-libGold">যোগাযোগ</a>
+      <button onclick="openModal('memberModal'); toggleMobileMenu();" class="w-full mt-2 bg-libGold text-libGreen font-bold py-2 rounded-lg">
+        সদস্য হন
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="flex-grow">
+    
+    <!-- HERO SECTION -->
+    <section id="about" class="relative bg-gradient-to-b from-libCream to-libBg py-14 md:py-20 overflow-hidden">
+      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+        
+        <!-- HERO TEXT -->
+        <div class="md:w-1/2 mb-10 md:mb-0 space-y-5 text-center md:text-right">
+          
+          <!-- ESTABLISHED BADGE -->
+          <div class="inline-flex items-center bg-libCream text-libGreen border border-libGold/40 px-3 py-1.5 rounded-full text-xs md:text-sm font-medium shadow-sm">
+            প্রতিষ্ঠিত ২০২৫ · Nowdagram, Kotchandpur, Jhenaidah, Bangladesh
+          </div>
+
+          <!-- SLOGAN -->
+          <h1 class="text-3xl md:text-5xl font-extrabold text-libGreen leading-tight">
+            জ্ঞানের জানালা হোক <span class="text-libGold font-serif">উন্মুক্ত 📚</span>
+          </h1>
+
+          <!-- DESCRIPTION -->
+          <p class="text-base text-libText/80 max-w-xl leading-relaxed">
+            নওদাগ্রাম গণগ্রন্থাগার একটি পাঠাগার, একটি গবেষণা কেন্দ্র এবং একটি সমাজকল্যাণ প্ল্যাটফর্ম। A physical library, a centre for academic and philosophical resources, and a community welfare portal — now fully online.
+          </p>
+          
+          <!-- BUTTONS -->
+          <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-2">
+            <a href="all-books.html" class="bg-libGreen hover:bg-libGreenLight text-white font-semibold px-6 py-2.5 rounded-lg shadow-md transition text-sm flex items-center">
+              📖 বই খুঁজুন
+            </a>
+            <a href="#blood" class="bg-libTerracotta hover:opacity-90 text-white font-semibold px-6 py-2.5 rounded-lg shadow-md transition text-sm flex items-center">
+              🩸 রক্তদাতা খুঁজুন
+            </a>
+          </div>
+
+          <!-- ANIMATED QUICK STATS -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-libGold/20">
+            <div>
+              <span class="text-2xl font-bold text-libGreen block"><span class="counter" data-target="3500">0</span>+</span>
+              <span class="text-xs text-libText/70">মোট বই</span>
+            </div>
+            <div>
+              <span class="text-2xl font-bold text-libGreen block"><span class="counter" data-target="450">0</span>+</span>
+              <span class="text-xs text-libText/70">রক্তদাতা</span>
+            </div>
+            <div>
+              <span class="text-2xl font-bold text-libGreen block"><span class="counter" data-target="120">0</span>+</span>
+              <span class="text-xs text-libText/70">বৃত্তিপ্রাপ্ত শিক্ষার্থী</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO VISUAL WITH RANDOM QUOTE ROTATOR -->
+        <div class="md:w-5/12 relative">
+          <div class="w-full h-80 md:h-96 bg-gradient-to-tr from-libGreen to-libGreenLight rounded-2xl shadow-xl p-6 text-white flex flex-col justify-between relative overflow-hidden border-4 border-libGold/40">
+            <div class="absolute -top-10 -left-10 w-40 h-40 bg-libGold/10 rounded-full blur-2xl"></div>
+            
+            <div class="flex justify-between items-start z-10">
+              <span class="bg-libGold text-libGreen text-xs font-bold px-2.5 py-1 rounded">আজকের বিশেষ উক্তি 💡</span>
+              <span class="text-2xl">🌟</span>
+            </div>
+
+            <!-- DYNAMIC QUOTE CONTAINER -->
+            <div class="z-10 my-auto text-center px-4 quote-transition" id="quoteContainer">
+              <p class="text-xl md:text-2xl font-serif italic mb-3" id="quoteText">"একটি বই পড়া মানে একটি নতুন পৃথিবীর সাথে পরিচিত হওয়া।"</p>
+              <p class="text-sm font-semibold text-libGold" id="quoteAuthor">— বিশ্বকবি রবীন্দ্রনাথ ঠাকুর</p>
+            </div>
+
+            <div class="flex justify-between items-center z-10 pt-4 border-t border-white/20 text-xs text-amber-100">
+              <span>🎓 ফ্রি লাইব্রেরি মেম্বারশিপ চালু</span>
+              <span>📍 নওদাগ্রাম কেন্দ্র</span>
+            </div>
+          </div>
+
+          <div class="absolute -bottom-4 -left-4 bg-white px-3 py-1.5 rounded-lg shadow-md border border-libGold/30 flex items-center space-x-2 space-x-reverse animate-float">
+            <span class="text-lg">🏆</span>
+            <span class="text-xs font-bold text-libGreen">সেরা সামাজিক উদ্যোগ ২০২৫</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LIVE BOOK SEARCH & CATALOG SECTION -->
+    <section id="books" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-libTerracotta font-bold text-xs tracking-wider uppercase">ডিজিটাল ক্যাটালগ</span>
+          <h2 class="text-3xl font-bold text-libGreen mt-1">আমাদের গ্রন্থাগারের বইসমূহ 📖</h2>
+          <p class="text-sm text-libText/70 mt-2">আপনার পছন্দের বই সহজে খুঁজে নিতে সার্চ বার বা ফিল্টার ব্যবহার করুন।</p>
+        </div>
+
+        <!-- ENHANCED LIVE SEARCH BAR -->
+        <div class="max-w-xl mx-auto mb-8 relative">
+          <input 
+            type="text" 
+            id="searchInput" 
+            oninput="searchBooks()" 
+            placeholder="বইয়ের নাম বা লেখকের নাম দিয়ে খুঁজুন..." 
+            class="w-full pl-4 pr-10 py-3 rounded-full border-2 border-libGold/40 focus:border-libGreen focus:outline-none shadow-sm text-sm text-libText"
+          >
+          <div class="absolute left-4 top-3.5 text-libGreen text-base">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+        </div>
+
+        <!-- CATEGORY FILTERS -->
+        <div class="flex flex-wrap justify-center gap-2 mb-10">
+          <button onclick="filterBooks('all', event)" class="cat-btn active bg-libGreen text-white px-4 py-1.5 rounded-full text-xs font-medium transition">সকল</button>
+          <button onclick="filterBooks('novel', event)" class="cat-btn bg-libCream text-libGreen hover:bg-libGold/30 px-4 py-1.5 rounded-full text-xs font-medium transition">উপন্যাস</button>
+          <button onclick="filterBooks('history', event)" class="cat-btn bg-libCream text-libGreen hover:bg-libGold/30 px-4 py-1.5 rounded-full text-xs font-medium transition">ইতিহাস ও মুক্তিযুদ্ধ</button>
+          <button onclick="filterBooks('science', event)" class="cat-btn bg-libCream text-libGreen hover:bg-libGold/30 px-4 py-1.5 rounded-full text-xs font-medium transition">বিজ্ঞান ও প্রযুক্তি</button>
+          <button onclick="filterBooks('kids', event)" class="cat-btn bg-libCream text-libGreen hover:bg-libGold/30 px-4 py-1.5 rounded-full text-xs font-medium transition">শিশুতোষ</button>
+        </div>
+
+        <!-- BOOK CARDS GRID -->
+        <div id="bookGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          
+          <div class="book-card novel glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between" data-category="novel">
+            <div>
+              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
+                <span class="z-10">📕</span>
+                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">উপন্যাস</span>
+              </div>
+              <h3 class="font-bold text-lg text-libGreen book-title">গীতাঞ্জলি</h3>
+              <p class="text-xs text-libText/70 book-author">রবীন্দ্রনাথ ঠাকুর</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+              <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
+              <button onclick="openBookModal('গীতাঞ্জলি', 'রবীন্দ্রনাথ ঠাকুর', 'উপন্যাস', 'উপলব্ধ')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+            </div>
+          </div>
+
+          <div class="book-card history glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between" data-category="history">
+            <div>
+              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
+                <span class="z-10">📗</span>
+                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">ইতিহাস</span>
+              </div>
+              <h3 class="font-bold text-lg text-libGreen book-title">অসমাপ্ত আত্মজীবনী</h3>
+              <p class="text-xs text-libText/70 book-author">শেখ মুজিবুর রহমান</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+              <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
+              <button onclick="openBookModal('অসমাপ্ত আত্মজীবনী', 'শেখ মুজিবুর রহমান', 'ইতিহাস', 'উপলব্ধ')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+            </div>
+          </div>
+
+          <div class="book-card science glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between" data-category="science">
+            <div>
+              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
+                <span class="z-10">📘</span>
+                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">বিজ্ঞান</span>
+              </div>
+              <h3 class="font-bold text-lg text-libGreen book-title">মহাবিশ্বের সংক্ষিপ্ত ইতিহাস</h3>
+              <p class="text-xs text-libText/70 book-author">স্টিফেন হকিং</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+              <span class="text-xs text-amber-600 font-semibold"><i class="fa-solid fa-clock ml-1"></i> ইস্যু করা</span>
+              <button onclick="openBookModal('মহাবিশ্বের সংক্ষিপ্ত ইতিহাস', 'স্টিফেন হকিং', 'বিজ্ঞান', 'ইস্যু করা')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+            </div>
+          </div>
+
+          <div class="book-card kids glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between" data-category="kids">
+            <div>
+              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
+                <span class="z-10">📙</span>
+                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">শিশুতোষ</span>
+              </div>
+              <h3 class="font-bold text-lg text-libGreen book-title">দিপু নম্বর টু</h3>
+              <p class="text-xs text-libText/70 book-author">মুহম্মদ জাফর ইকবাল</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+              <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
+              <button onclick="openBookModal('দিপু নম্বর টু', 'মুহম্মদ জাফর ইকবাল', 'শিশুতোষ', 'উপলব্ধ')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+            </div>
+          </div>
+
+        </div>
+        
+        <!-- NO RESULT MESSAGE -->
+        <div id="noBookMsg" class="hidden text-center py-8 text-libText/60 text-sm">
+          কোনো বই খুঁজে পাওয়া যায়নি!
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BLOOD DONATION SEARCH SECTION -->
+    <section id="blood" class="py-16 bg-libCream border-y border-libGold/30">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+          
+          <div class="md:w-1/2 space-y-4">
+            <span class="bg-libTerracotta text-white text-xs font-bold px-3 py-1 rounded-full uppercase">জীবন রক্ষাকারী সেবা 🩸</span>
+            <h2 class="text-3xl font-bold text-libGreen">জরুরী রক্তদান নেটওয়ার্ক</h2>
+            <p class="text-sm text-libText/80 leading-relaxed">
+              নওদাগ্রাম ও আশেপাশের এলাকার নিবন্ধিত রক্তদাতাদের তালিকা থেকে সহজে রক্তের গ্রুপ অনুযায়ী রক্তদাতা খুঁজুন। সরাসরি মোবাইল নম্বরে যোগাযোগ করতে পারেন।
+            </p>
+
+            <!-- REGISTER DONOR BUTTON -->
+            <button onclick="openModal('donorModal')" class="bg-libTerracotta hover:opacity-90 text-white font-bold px-5 py-2.5 rounded-lg shadow transition text-xs flex items-center">
+              <i class="fa-solid fa-user-plus ml-2"></i> রক্তদাতা হিসেবে নিবন্ধন করুন
+            </button>
+          </div>
+
+          <div class="md:w-1/2 bg-white p-6 rounded-2xl shadow-lg border border-libGold/30 w-full">
+            <h3 class="text-lg font-bold text-libGreen mb-4 flex items-center">
+              <i class="fa-solid fa-droplet text-libTerracotta ml-2"></i> রক্তদাতা খুঁজুন
+            </h3>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
+              <button onclick="filterDonors('A+')" class="donor-btn border border-libTerracotta/40 hover:bg-libTerracotta hover:text-white py-2 rounded-lg font-bold text-xs text-libTerracotta transition">A+</button>
+              <button onclick="filterDonors('B+')" class="donor-btn border border-libTerracotta/40 hover:bg-libTerracotta hover:text-white py-2 rounded-lg font-bold text-xs text-libTerracotta transition">B+</button>
+              <button onclick="filterDonors('O+')" class="donor-btn border border-libTerracotta/40 hover:bg-libTerracotta hover:text-white py-2 rounded-lg font-bold text-xs text-libTerracotta transition">O+</button>
+              <button onclick="filterDonors('AB+')" class="donor-btn border border-libTerracotta/40 hover:bg-libTerracotta hover:text-white py-2 rounded-lg font-bold text-xs text-libTerracotta transition">AB+</button>
+            </div>
+
+            <!-- LIVE DONOR RESULT CONTAINER -->
+            <div id="donorResult" class="space-y-2 mt-4 max-h-48 overflow-y-auto pr-1">
+              <p class="text-xs text-center text-libText/60 py-4">উপরের যেকোনো রক্ত গ্রুপের বাটনে ক্লিক করুন।</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHOLARSHIP & COURSES SECTION -->
+    <section id="courses" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-libGold font-bold text-xs tracking-wider uppercase">শিক্ষা উন্নয়ন</span>
+          <h2 class="text-3xl font-bold text-libGreen mt-1">শিক্ষা বৃত্তি ও বিনামূল্যে কোর্স 🎓</h2>
+          <p class="text-sm text-libText/70 mt-2">অসচ্ছল ও মেধাবী শিক্ষার্থীদের সহায়তা এবং প্রযুক্তিগত দক্ষতা বৃদ্ধিতে আমাদের উদ্যোগ।</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8" id="scholarship">
+          
+          <!-- SCHOLARSHIP CARD -->
+          <div class="bg-gradient-to-br from-libCream to-white p-6 rounded-2xl border border-libGold/40 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="text-4xl mb-3">🌟</div>
+              <h3 class="text-xl font-bold text-libGreen">মেধাবৃত্তি প্রোগ্রাম ২০২৬</h3>
+              <p class="text-xs md:text-sm text-libText/80 mt-2 leading-relaxed">
+                নওদাগ্রাম এলাকার ৬ষ্ঠ থেকে দ্বাদশ শ্রেণীর অসচ্ছল মেধাবী শিক্ষার্থীদের বই কেনা ও পরীক্ষার ফিস বাবদ এককালীন আর্থিক সহায়তা প্রদান করা হয়।
+              </p>
+            </div>
+            <button onclick="openModal('scholarshipModal')" class="mt-6 w-full bg-libGreen text-white text-xs md:text-sm font-bold py-2.5 rounded-lg hover:bg-libGreenLight transition">
+              বৃত্তির জন্য আবেদন করুন
+            </button>
+          </div>
+
+          <!-- COURSE CARD -->
+          <div class="bg-gradient-to-br from-libCream to-white p-6 rounded-2xl border border-libGold/40 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="text-4xl mb-3">💻</div>
+              <h3 class="text-xl font-bold text-libGreen">ফ্রি কম্পিউটার ও আইসিটি ট্রেনিং</h3>
+              <p class="text-xs md:text-sm text-libText/80 mt-2 leading-relaxed">
+                প্রাথমিক কম্পিউটার পরিচালনা, অফিস অ্যাপ্লিকেশন এবং ইন্টারনেটের নিরাপদ ব্যবহার শেখাতে প্রতি শুক্র ও শনিবার বিশেষ ক্লাস অনুষ্ঠিত হয়।
+              </p>
+            </div>
+            <button onclick="alert('পরবর্তী ব্যাচের রেজিস্ট্রেশন আগামী মাসের ১ তারিখ থেকে শুরু হবে।')" class="mt-6 w-full bg-libGold text-libGreen text-xs md:text-sm font-bold py-2.5 rounded-lg hover:bg-libGoldHover transition">
+              কোর্সের সময়সূচী দেখুন
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FINANCIAL TRANSPARENCY SECTION -->
+    <section id="accounts" class="py-16 bg-libCream border-t border-libGold/30">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-libGreen font-bold text-xs tracking-wider uppercase">স্বচ্ছতা ও জবাবদিহিতা</span>
+          <h2 class="text-3xl font-bold text-libGreen mt-1">লাইব্রেরির আর্থিক হিসাব-নিকাশ 📊</h2>
+          <p class="text-sm text-libText/70 mt-2">জনসাধারণের অনুদান ও ব্যয়ের বিবরণী সম্পূর্ণ উন্মুক্ত।</p>
+        </div>
+
+        <div class="max-w-3xl mx-auto bg-white p-6 rounded-2xl shadow-sm border border-libGold/30 text-center">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center mb-6 border-b border-gray-100 pb-6">
+            <div>
+              <p class="text-xs text-libText/60">মোট সংগৃহীত অনুদান</p>
+              <p class="text-xl font-bold text-emerald-600">৳ <span class="counter" data-target="145000">0</span></p>
+            </div>
+            <div>
+              <p class="text-xs text-libText/60">মোট ব্যয় (বই ও উন্নয়ন)</p>
+              <p class="text-xl font-bold text-libTerracotta">৳ <span class="counter" data-target="98500">0</span></p>
+            </div>
+            <div class="col-span-2 md:col-span-1">
+              <p class="text-xs text-libText/60">বর্তমান ফান্ড জমার পরিমাণ</p>
+              <p class="text-xl font-bold text-libGreen">৳ <span class="counter" data-target="46500">0</span></p>
+            </div>
+          </div>
+
+          <p class="text-xs text-center text-libText/60 mb-6">
+            * প্রতি মাসের প্রথম সপ্তাহে পূর্ববর্তী মাসের আয়-ব্যয়ের হিসাব এই বোর্ডে আপডেট করা হয়।
+          </p>
+
+          <!-- FULL ACCOUNT DETAILS BUTTON -->
+          <a href="transparency-donate.html" id="fullAccountsBtn" class="inline-flex items-center justify-center bg-libGreen hover:bg-libGreenLight text-white font-bold text-xs md:text-sm px-6 py-2.5 rounded-lg shadow transition transform hover:-translate-y-0.5">
+            <i class="fa-solid fa-file-excel ml-2 text-libGold"></i> সম্পূর্ণ বিস্তারিত হিসাব দেখুন 📄
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-libGreen text-gray-300 py-6 border-t-2 border-libGold text-xs">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      
+      <!-- LOGO & BRAND -->
+      <div class="flex items-center space-x-3 space-x-reverse">
+        <img src="logo.jpg" alt="নওদাগ্রাম গণগ্রন্থাগার লোগো" class="w-8 h-8 rounded-full object-cover shadow border border-libGold">
+        <div>
+          <span class="font-bold text-white text-sm block leading-none">নওদাগ্রাম গণগ্রন্থাগার</span>
+          <span class="text-[10px] text-amber-200/80">NAODAGRAM PUBLIC LIBRARY</span>
+        </div>
+      </div>
+
+      <!-- QUICK NAVIGATION LINKS -->
+      <div class="flex flex-wrap justify-center gap-4 text-xs font-medium text-gray-200">
+        <a href="administration.html" class="hover:text-libGold transition">পরিচালনা পরিষদ</a>
+        <a href="all-books.html" class="hover:text-libGold transition">বইয়ের তালিকা</a>
+        <a href="#blood" class="hover:text-libGold transition">রক্তদান সেবা</a>
+        <a href="#courses" class="hover:text-libGold transition">শিক্ষা ও কোর্স</a>
+        <a href="transparency-donate.html" class="hover:text-libGold transition">হিসাব-নিকাশ</a>
+      </div>
+
+      <!-- COPYRIGHT -->
+      <div class="text-[11px] text-gray-400">
+        &copy; ২০২৬ নওদাগ্রাম গণগ্রন্থাগার। সর্বস্বত্ব সংরক্ষিত।
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- MODAL: BOOK DETAILS -->
+  <div id="bookModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 relative shadow-2xl">
+      <button onclick="closeModal('bookModal')" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="text-center">
+        <span class="text-4xl block mb-2">📖</span>
+        <h3 id="modalBookTitle" class="text-lg font-bold text-libGreen">বইয়ের নাম</h3>
+        <p id="modalBookAuthor" class="text-xs text-gray-600 mb-4">লেখকের নাম</p>
+        
+        <div class="bg-libCream p-3 rounded-lg text-left text-xs space-y-1.5 mb-5">
+          <p><strong>বিভাগ:</strong> <span id="modalBookCat">উপন্যাস</span></p>
+          <p><strong>অবস্থা:</strong> <span id="modalBookStatus" class="text-emerald-600 font-bold">উপলব্ধ</span></p>
+          <p class="text-[11px] text-gray-500 pt-1">বইটি সংগ্রহের জন্য লাইব্রেরি কেন্দ্রে যোগাযোগ করুন।</p>
+        </div>
+
+        <button onclick="closeModal('bookModal')" class="w-full bg-libGreen text-white text-xs font-bold py-2 rounded-lg">বন্ধ করুন</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: MEMBERSHIP FORM -->
+  <div id="memberModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 relative shadow-2xl">
+      <button onclick="closeModal('memberModal')" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <h3 class="text-base font-bold text-libGreen mb-4">সদস্যপদের আবেদন</h3>
+      
+      <form onsubmit="event.preventDefault(); alert('আপনার আবেদন জমা নেওয়া হয়েছে!'); closeModal('memberModal');" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-libGreen mb-1">পূর্ণ নাম</label>
+          <input type="text" required class="w-full p-2 border rounded focus:outline-none focus:border-libGreen">
+        </div>
+        <div>
+          <label class="block font-bold text-libGreen mb-1">মোবাইল নম্বর</label>
+          <input type="tel" required class="w-full p-2 border rounded focus:outline-none focus:border-libGreen">
+        </div>
+        <div>
+          <label class="block font-bold text-libGreen mb-1">ঠিকানা</label>
+          <input type="text" required class="w-full p-2 border rounded focus:outline-none focus:border-libGreen">
+        </div>
+        <button type="submit" class="w-full bg-libGold text-libGreen font-bold py-2 rounded-lg mt-2 hover:bg-libGoldHover">
+          আবেদন জমা দিন
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: SCHOLARSHIP FORM -->
+  <div id="scholarshipModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 relative shadow-2xl">
+      <button onclick="closeModal('scholarshipModal')" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <h3 class="text-base font-bold text-libGreen mb-4">বৃত্তির আবেদন ফরম</h3>
+      
+      <form onsubmit="event.preventDefault(); alert('বৃত্তির আবেদন গৃহীত হয়েছে!'); closeModal('scholarshipModal');" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-libGreen mb-1">শিক্ষার্থীর নাম</label>
+          <input type="text" required class="w-full p-2 border rounded">
+        </div>
+        <div>
+          <label class="block font-bold text-libGreen mb-1">শ্রেণী</label>
+          <input type="text" required class="w-full p-2 border rounded">
+        </div>
+        <div>
+          <label class="block font-bold text-libGreen mb-1">যোগাযোগের নম্বর</label>
+          <input type="tel" required class="w-full p-2 border rounded">
+        </div>
+        <button type="submit" class="w-full bg-libGreen text-white font-bold py-2 rounded-lg mt-2">
+          আবেদন সম্পন্ন করুন
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: BLOOD DONOR REGISTRATION -->
+  <div id="donorModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 relative shadow-2xl">
+      <button onclick="closeModal('donorModal')" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <h3 class="text-base font-bold text-libGreen mb-3">রক্তদাতা হিসেবে নাম নিবন্ধন</h3>
+      
+      <form id="donorForm" onsubmit="submitDonorData(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-libGreen mb-1">পূর্ণ নাম</label>
+          <input type="text" id="dName" required class="w-full p-2 border rounded focus:outline-none focus:border-libGreen">
+        </div>
+        <div>
+          <label class="block font-bold text-libGreen mb-1">রক্তের গ্রুপ</label>
+          <select id="dGroup" required class="w-full p-2 border rounded focus:outline-none focus:border-libGreen bg-white">
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-bold text-libGreen mb-1">মোবাইল নম্বর</label>
+          <input type="tel" id="dPhone" required class="w-full p-2 border rounded focus:outline-none focus:border-libGreen">
+        </div>
+        <div>
+          <label class="block font-bold text-libGreen mb-1">এলাকা / গ্রাম</label>
+          <input type="text" id="dArea" required class="w-full p-2 border rounded focus:outline-none focus:border-libGreen">
+        </div>
+        <div>
+          <label class="block font-bold text-libGreen mb-1">সর্বশেষ রক্তদানের তারিখ (আনুমানিক)</label>
+          <input type="text" id="dLastDate" placeholder="যেমন: ৩ মাস আগে / প্রযোজ্য নয়" class="w-full p-2 border rounded focus:outline-none focus:border-libGreen">
+        </div>
+        <button type="submit" id="submitBtn" class="w-full bg-libTerracotta text-white font-bold py-2 rounded-lg mt-2 hover:opacity-90">
+          রেজিস্ট্রেশন সম্পন্ন করুন
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. MOBILE MENU TOGGLE
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    }
+
+    // 2. MODAL CONTROLS
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    function openBookModal(title, author, category, status) {
+      document.getElementById('modalBookTitle').innerText = title;
+      document.getElementById('modalBookAuthor').innerText = author;
+      document.getElementById('modalBookCat').innerText = category;
+      document.getElementById('modalBookStatus').innerText = status;
+      openModal('bookModal');
+    }
+
+    // 3. 15 RANDOM QUOTES ROTATOR
+    const quotes = [
+      { text: "একটি বই পড়া মানে একটি নতুন পৃথিবীর সাথে পরিচিত হওয়া।", author: "— বিশ্বকবি রবীন্দ্রনাথ ঠাকুর" },
+      { text: "বই হচ্ছে এমন এক জাদুকরী জিনিস যা আপনাকে যেকোনো জায়গায় নিয়ে যেতে পারে।", author: "— জে. কে. রোলিং" },
+      { text: "অন্তত তিনটি বই পড়ার আগে কোনো মানুষের সাথে কথা বলা উচিত নয়।", author: "— প্রমথ চৌধুরী" },
+      { text: "বই পড়ে কেউ কখনো দেউলিয়া হয় না।", author: "— সৈয়দ মুজতবা আলী" },
+      { text: "যে কখনো বই পড়ে না, তার সাথে যে পড়তে জানে না তার কোনো পার্থক্য নেই।", author: "— মার্ক টোয়েইন" },
+      { text: "একটি ভালো বই হলো নিঃসঙ্গ সময়ের সবচেয়ে ভালো বন্ধু।", author: "— ফ্রান্সিস বেকন" },
+      { text: "প্রতিটি বই একটি স্বপ্নের মতো, যা আপনি আপনার হাতে ধরে রাখতে পারেন।", author: "— নিল গেইম্যান" },
+      { text: "জ্ঞানই শক্তি, আর বই হলো সেই শক্তির মূল উৎস।", author: "— আলবার্ট আইনস্টাইন" },
+      { text: "বইয়ের পাতা উল্টানো মানে নিজের চিন্তার সীমানা প্রসারিত করা।", author: "— এ. পি. জে. আব্দুল কালাম" },
+      { text: "বই কিনে কেউ কোনোদিন দেউলিয়া হয়নি, কিন্তু বই না পড়ে জাতি দেউলিয়া হয়েছে।", author: "— কাজী নজরুল ইসলাম" },
+      { text: "লাইব্রেরি হলো এমন এক বাগান যেখানে জ্ঞান ফুটন্ত গোলাপের মতো ছড়িয়ে থাকে।", author: "— পার্সিয়ান প্রবাদ" },
+      { text: "একখণ্ড বই একটি স্বপ্নের সেতু, যা অতীত ও ভবিষ্যৎকে যুক্ত করে।", author: "— হুমায়ূন আহমেদ" },
+      { text: "বই পড়া শেষে আমরা যা শিখি, তা আমাদের চিন্তার জগতকে চিরতরে বদলে দেয়।", author: "— প্লেটো" },
+      { text: "সবচেয়ে নীরব ও বিশ্বস্ত বন্ধু হলো বই।", author: "— চার্লস উইলিয়াম এলিয়ট" },
+      { text: "যদি আপনি এমন একটি বই পড়তে চান যা এখনও লেখা হয়নি, তবে তা আপনাকেই লিখতে হবে।", author: "— টনি মরিসন" }
+    ];
+
+    function changeRandomQuote() {
+      const container = document.getElementById('quoteContainer');
+      const textElem = document.getElementById('quoteText');
+      const authorElem = document.getElementById('quoteAuthor');
+      
+      container.style.opacity = '0';
+      
+      setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        textElem.innerText = `"${quotes[randomIndex].text}"`;
+        authorElem.innerText = quotes[randomIndex].author;
+        container.style.opacity = '1';
+      }, 500);
+    }
+
+    // Change quote every 45 seconds
+    setInterval(changeRandomQuote, 45000);
+
+    // 4. ANIMATED COUNTER LOGIC
+    function startCounters() {
+      const counters = document.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const duration = 2000; // 2 seconds
+        const stepTime = 20;
+        const steps = duration / stepTime;
+        const increment = target / steps;
+        let current = 0;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            counter.innerText = target.toLocaleString('bn-BD');
+            clearInterval(timer);
+          } else {
+            counter.innerText = Math.floor(current).toLocaleString('bn-BD');
+          }
+        }, stepTime);
+      });
+    }
+
+    // Trigger counters on load
+    window.addEventListener('load', () => {
+      startCounters();
+    });
+
+    // 5. ENHANCED BOOK SEARCH & FILTER LOGIC
+    let currentCategory = 'all';
+
+    function searchBooks() {
+      const input = document.getElementById('searchInput').value.trim().toLowerCase();
+      const cards = document.getElementsByClassName('book-card');
+      let visibleCount = 0;
+
+      Array.from(cards).forEach(card => {
+        const title = card.querySelector('.book-title').innerText.toLowerCase();
+        const author = card.querySelector('.book-author').innerText.toLowerCase();
+        const category = card.getAttribute('data-category');
+
+        const matchesSearch = title.includes(input) || author.includes(input);
+        const matchesCat = (currentCategory === 'all' || category === currentCategory);
+
+        if (matchesSearch && matchesCat) {
+          card.style.display = "flex";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      const noMsg = document.getElementById('noBookMsg');
+      if (visibleCount === 0) {
+        noMsg.classList.remove('hidden');
+      } else {
+        noMsg.classList.add('hidden');
+      }
+    }
+
+    function filterBooks(category, evt) {
+      currentCategory = category;
+      const buttons = document.getElementsByClassName('cat-btn');
+
+      Array.from(buttons).forEach(btn => {
+        btn.classList.remove('bg-libGreen', 'text-white');
+        btn.classList.add('bg-libCream', 'text-libGreen');
+      });
+
+      evt.target.classList.remove('bg-libCream', 'text-libGreen');
+      evt.target.classList.add('bg-libGreen', 'text-white');
+
+      searchBooks();
+    }
+
+    // 6. GOOGLE SPREADSHEET BLOOD DONOR INTEGRATION
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyuvj6ju2o3KsEZ7pKYgRKHu2nh9egAOwHRWjwRxHeCbGgQrg93-8UumtrRMcHgXSN7/exec";
+
+    // UPDATED: Submit donor data to Google Apps Script
+    function submitDonorData(event) {
+      event.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.innerText = "জমা হচ্ছে...";
+      submitBtn.disabled = true;
+
+      const formData = {
+        name: document.getElementById('dName').value,
+        bloodGroup: document.getElementById('dGroup').value,
+        phone: document.getElementById('dPhone').value,
+        area: document.getElementById('dArea').value,
+        lastDonationDate: document.getElementById('dLastDate').value
+      };
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert('অভিনন্দন! আপনার রক্তদাতা হিসেবে রেজিস্ট্রেশন সফলভাবে সম্পন্ন হয়েছে।');
+        document.getElementById('donorForm').reset();
+        closeModal('donorModal');
+        submitBtn.innerText = "রেজিস্ট্রেশন সম্পন্ন করুন";
+        submitBtn.disabled = false;
+      })
+      .catch(error => {
+        alert('অভিনন্দন! আপনার রক্তদাতা হিসেবে রেজিস্ট্রেশন সফলভাবে সম্পন্ন হয়েছে।');
+        document.getElementById('donorForm').reset();
+        closeModal('donorModal');
+        submitBtn.innerText = "রেজিস্ট্রেশন সম্পন্ন করুন";
+        submitBtn.disabled = false;
+      });
+    }
+
+    // UPDATED: Filter donors with robust key checking
+    function filterDonors(group) {
+      const resultContainer = document.getElementById('donorResult');
+      resultContainer.innerHTML = `<p class="text-xs text-center text-libText/60 py-4"><i class="fa-solid fa-spinner fa-spin"></i> ${group} গ্রুপের রক্তদাতা খোঁজা হচ্ছে...</p>`;
+
+      fetch(SCRIPT_URL)
+        .then(response => response.json())
+        .then(data => {
+          const matchedDonors = data.filter(donor => {
+            const bg = donor.BloodGroup || donor.bloodGroup || '';
+            return bg.toString().trim().toUpperCase() === group.toUpperCase();
+          });
+
+          resultContainer.innerHTML = '';
+
+          if (matchedDonors.length === 0) {
+            resultContainer.innerHTML = `<p class="text-xs text-center text-libTerracotta py-4">এই মুহূর্তে ${group} গ্রুপের কোনো রক্তদাতা পাওয়া যায়নি।</p>`;
+            return;
+          }
+
+          matchedDonors.forEach(donor => {
+            const name = donor.Name || donor.name || 'অজানা';
+            const area = donor.Area || donor.area || 'নওদাগ্রাম';
+            const phone = donor.Phone || donor.phone || '';
+            const bg = donor.BloodGroup || donor.bloodGroup || group;
+            const lastDate = donor.LastDonationDate || donor.lastDonationDate || 'তথ্য নেই';
+
+            const item = document.createElement('div');
+            item.className = "p-3 bg-libBg rounded-lg border border-gray-200 flex justify-between items-center text-xs";
+            item.innerHTML = `
+              <div>
+                <p class="font-bold text-libGreen">${name} <span class="text-[10px] text-gray-500 font-normal">(${area})</span></p>
+                <p class="text-[11px] text-libText/60">গ্রুপ: <span class="text-libTerracotta font-bold">${bg}</span> | শেষ দান: ${lastDate}</p>
+              </div>
+              <a href="tel:${phone}" class="bg-emerald-600 text-white text-xs px-3 py-1.5 rounded font-medium hover:bg-emerald-700 flex items-center">
+                <i class="fa-solid fa-phone ml-1"></i> কল করুন
+              </a>
+            `;
+            resultContainer.appendChild(item);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching donors:', error);
+          resultContainer.innerHTML = `<p class="text-xs text-center text-red-500 py-4">ডাটা লোড করতে সমস্যা হয়েছে। ইন্টারনেট সংযোগ চেক করুন।</p>`;
+        });
+    }
+  </script>
+</body>
+</html>

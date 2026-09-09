@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>আর্থিক স্বচ্ছতা ও অনুদান - নওদাগ্রাম গণগ্রন্থাগার</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts (Hind Siliguri for Bengali) -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            libBg: '#FDFBF7',
+            libCream: '#F4EFE6',
+            libGreen: '#1B4332',
+            libGreenLight: '#2D6A4F',
+            libGold: '#D4AF37',
+            libGoldHover: '#B59226',
+            libTerracotta: '#C05A46',
+            libText: '#2B2D42'
+          },
+          fontFamily: {
+            sans: ['Hind Siliguri', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FDFBF7;
+      color: #2B2D42;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    /* Smooth Glassmorphism & Animations */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px -5px rgba(27, 67, 50, 0.08), 0 8px 10px -6px rgba(27, 67, 50, 0.08);
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(2deg); }
+    }
+    .animate-float {
+      animation: floatSlow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.03); }
+    }
+    .animate-glow {
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    /* Table Row Fade Transition */
+    .table-row {
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .table-row:hover {
+      background-color: #FAF6ED;
+    }
+  </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen selection:bg-libGold/30 selection:text-libGreen">
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="bg-libGreen text-amber-200 text-xs md:text-sm py-2 px-4 border-b border-libGold/35">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-2 space-x-reverse animate-pulse">
+        <span>🤝✨</span>
+        <span>আপনার যেকোনো ক্ষুদ্র অনুদানও আমাদের লাইব্রেরির সমৃদ্ধিতে এক বিশাল অবদান।</span>
+      </div>
+      <a href="index.html" class="hover:text-white transition font-semibold text-xs flex items-center group">
+        <span>মূল পেজে ফিরে যান</span>
+        <i class="fa-solid fa-arrow-right mr-1.5 transform group-hover:-translate-x-1 transition-transform"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="sticky top-0 z-40 bg-libCream/90 backdrop-blur-md border-b border-libGold/30 shadow-sm transition-all">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-3 space-x-reverse group">
+        <div class="w-10 h-10 rounded-full bg-libGreen text-libGold flex items-center justify-center text-lg shadow-md border-2 border-libGold animate-float">
+          🏛️
+        </div>
+        <div>
+          <h1 class="text-lg md:text-xl font-bold text-libGreen leading-tight group-hover:text-libGoldTransition">নওদাগ্রাম গণগ্রন্থাগার</h1>
+          <p class="text-[10px] text-libGreen/80 font-semibold tracking-wider">আর্থিক স্বচ্ছতা ও অনুদান পোর্টাল</p>
+        </div>
+      </a>
+
+      <div class="flex items-center space-x-3 space-x-reverse">
+        <a href="#donate-section" class="bg-libGold hover:bg-libGoldHover text-libGreen font-bold px-4 py-2 rounded-xl shadow-md text-xs transition transform hover:scale-105 flex items-center space-x-1 space-x-reverse">
+          <i class="fa-solid fa-hand-holding-dollar ml-1"></i>
+          <span>অনুদান দিন 💛</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow container mx-auto px-4 py-12 space-y-14">
+
+    <!-- PAGE HEADER -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="inline-flex items-center gap-1.5 bg-libGold/20 text-libGreen text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider border border-libGold/30 shadow-sm animate-glow">
+        <span>⚖️</span> স্বচ্ছতা ও জবাবদিহিতা
+      </span>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-libGreen leading-tight">
+        আর্থিক বিবরণী ও অনুদান ড্যাশবোর্ড 📊
+      </h1>
+      <p class="text-sm md:text-base text-libText/75 leading-relaxed max-w-2xl mx-auto">
+        আমাদের প্রতিষ্ঠানে আসা প্রতিটি টাকার সঠিক হিসাব এবং ব্যয়ের বিবরণী জনগণের সামনে সম্পূর্ণ উন্মুক্ত। আপনিও সরাসরি অনলাইন অনুদানের মাধ্যমে শিক্ষা প্রসারে অংশ নিতে পারেন।
+      </p>
+    </div>
+
+    <!-- OVERVIEW STATS CARDS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Income Card -->
+      <div class="glass-card p-6 rounded-2xl border-l-4 border-l-emerald-600 relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 text-7xl opacity-10 group-hover:opacity-20 transition-opacity">💰</div>
+        <div class="flex justify-between items-center relative z-10">
+          <div>
+            <p class="text-xs text-libText/70 font-semibold flex items-center gap-1.5">
+              <span>📥</span> মোট সংগৃহীত অনুদান (আয়)
+            </p>
+            <h3 class="text-2xl md:text-3xl font-bold text-emerald-600 mt-2">৳ <span id="totalIncome">১৪৫,০০০</span></h3>
+          </div>
+          <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expense Card -->
+      <div class="glass-card p-6 rounded-2xl border-l-4 border-l-libTerracotta relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 text-7xl opacity-10 group-hover:opacity-20 transition-opacity">📑</div>
+        <div class="flex justify-between items-center relative z-10">
+          <div>
+            <p class="text-xs text-libText/70 font-semibold flex items-center gap-1.5">
+              <span>📤</span> মোট পরিচালনা ও উন্নয়ন ব্যয়
+            </p>
+            <h3 class="text-2xl md:text-3xl font-bold text-libTerracotta mt-2">৳ <span id="totalExpense">৯৮,৫০০</span></h3>
+          </div>
+          <div class="w-12 h-12 bg-red-100 text-libTerracotta rounded-2xl flex items-center justify-center text-xl shadow-inner">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Balance Card -->
+      <div class="glass-card p-6 rounded-2xl border-l-4 border-l-libGreen relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 text-7xl opacity-10 group-hover:opacity-20 transition-opacity">🏦</div>
+        <div class="flex justify-between items-center relative z-10">
+          <div>
+            <p class="text-xs text-libText/70 font-semibold flex items-center gap-1.5">
+              <span>💎</span> বর্তমান ফান্ড স্থিতি (অবশিষ্ট)
+            </p>
+            <h3 class="text-2xl md:text-3xl font-bold text-libGreen mt-2">৳ <span id="currentBalance">৪৬,৫০০</span></h3>
+          </div>
+          <div class="w-12 h-12 bg-libCream text-libGreen rounded-2xl flex items-center justify-center text-xl shadow-inner border border-libGold/30">
+            <i class="fa-solid fa-piggy-bank"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- EXCEL DATA TABLE SECTION -->
+    <section class="glass-card p-6 md:p-8 rounded-3xl shadow-md border border-libGold/30 relative">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 pb-4 border-b border-libGold/25">
+        <div>
+          <h2 class="text-xl md:text-2xl font-bold text-libGreen flex items-center gap-2">
+            <span>📋</span> বিস্তারিত হিসাব লেনদেন (আয়-ব্যয় রেজিস্টার)
+          </h2>
+          <p class="text-xs text-libText/65 mt-1">গুগল শিট এক্সেল ফাইল থেকে সরাসরি সিঙ্ক হওয়া রিয়েল-টাইম লেনদেনের বিবরণী।</p>
+        </div>
+
+        <!-- FILTER & SEARCH -->
+        <div class="flex flex-wrap gap-2.5 w-full md:w-auto">
+          <div class="relative flex-grow md:w-52">
+            <input 
+              type="text" 
+              id="tableSearch" 
+              oninput="filterTable()" 
+              placeholder="বিবরণ বা খাত খুঁজুন..." 
+              class="w-full pl-8 pr-3 py-2 text-xs border border-libGold/40 rounded-xl focus:outline-none focus:border-libGreen bg-white shadow-sm"
+            >
+            <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-3 text-gray-400 text-xs"></i>
+          </div>
+          <select id="typeFilter" onchange="filterTable()" class="px-3 py-2 text-xs border border-libGold/40 rounded-xl focus:outline-none focus:border-libGreen bg-white shadow-sm cursor-pointer font-medium text-libGreen">
+            <option value="all">🔍 সকল লেনদেন</option>
+            <option value="income">📥 শুধুমাত্র আয়</option>
+            <option value="expense">📤 শুধুমাত্র ব্যয়</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- TABLE CONTAINER -->
+      <div class="overflow-x-auto rounded-2xl border border-libGold/20 bg-white shadow-inner">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-libCream/80 text-libGreen border-b border-libGold/30 text-xs uppercase tracking-wider">
+              <th class="p-3.5 font-bold">তারিখ 📅</th>
+              <th class="p-3.5 font-bold">খাত / বিবরণ 📝</th>
+              <th class="p-3.5 font-bold">ধরণ ⚡</th>
+              <th class="p-3.5 font-bold">পরিমাণ 💵</th>
+              <th class="p-3.5 font-bold">মাধ্যম / ভাউচার 🧾</th>
+            </tr>
+          </thead>
+          <tbody id="accountsTableBody" class="divide-y divide-gray-100">
+            <tr class="table-row" data-type="income">
+              <td class="p-3.5 text-gray-600 font-medium">১০ ফেব্রুয়ারি ২০২৬</td>
+              <td class="p-3.5 font-bold text-libGreen flex items-center gap-1.5">
+                <span>💛</span> সাধারণ অনুদান (স্থানীয় শুভাকাঙ্ক্ষী)
+              </td>
+              <td class="p-3.5"><span class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-bold text-[11px] shadow-xs">📥 আয়</span></td>
+              <td class="p-3.5 font-bold text-emerald-600 text-sm">৳ ৫,০০০</td>
+              <td class="p-3.5 text-gray-500 font-mono text-[11px]">bKash (Txn: 9A82J...)</td>
+            </tr>
+            <tr class="table-row" data-type="expense">
+              <td class="p-3.5 text-gray-600 font-medium">০৫ ফেব্রুয়ারি ২০২৬</td>
+              <td class="p-3.5 font-bold text-libGreen flex items-center gap-1.5">
+                <span>📚</span> নতুন ১৫০টি বই ক্রয় (রকিব বুক হাউজ)
+              </td>
+              <td class="p-3.5"><span class="bg-red-100 text-libTerracotta px-2.5 py-1 rounded-full font-bold text-[11px] shadow-xs">📤 ব্যয়</span></td>
+              <td class="p-3.5 font-bold text-libTerracotta text-sm">৳ ১২,৪০০</td>
+              <td class="p-3.5 text-gray-500 font-mono text-[11px]">ভাউচার #১০৪</td>
+            </tr>
+            <tr class="table-row" data-type="income">
+              <td class="p-3.5 text-gray-600 font-medium">২৮ জানুয়ারি ২০২৬</td>
+              <td class="p-3.5 font-bold text-libGreen flex items-center gap-1.5">
+                <span>🎫</span> লাইব্রেরি সদস্য ফি সংগ্রহ
+              </td>
+              <td class="p-3.5"><span class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-bold text-[11px] shadow-xs">📥 আয়</span></td>
+              <td class="p-3.5 font-bold text-emerald-600 text-sm">৳ ২,২০০</td>
+              <td class="p-3.5 text-gray-500 font-mono text-[11px]">ক্যাশ রসিদ</td>
+            </tr>
+            <tr class="table-row" data-type="expense">
+              <td class="p-3.5 text-gray-600 font-medium">১৫ জানুয়ারি ২০২৬</td>
+              <td class="p-3.5 font-bold text-libGreen flex items-center gap-1.5">
+                <span>💡</span> ওয়াইফাই ও বিদ্যুৎ বিল পরিশোধ
+              </td>
+              <td class="p-3.5"><span class="bg-red-100 text-libTerracotta px-2.5 py-1 rounded-full font-bold text-[11px] shadow-xs">📤 ব্যয়</span></td>
+              <td class="p-3.5 font-bold text-libTerracotta text-sm">৳ ১,৫০০</td>
+              <td class="p-3.5 text-gray-500 font-mono text-[11px]">অনলাইন পেমেন্ট</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 text-right">
+        <span class="text-[11px] text-gray-400 italic">⚡ প্রতিদিনের লেনদেন স্বয়ংক্রিয়ভাবে গুগল শিট থেকে আপডেট হয়।</span>
+      </div>
+    </section>
+
+    <!-- DONATE SECTION -->
+    <section id="donate-section" class="bg-gradient-to-br from-libCream via-white to-libCream p-8 md:p-10 rounded-3xl shadow-lg border border-libGold/40 relative overflow-hidden">
+      <div class="absolute -right-16 -top-16 w-48 h-48 bg-libGold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
+        
+        <!-- DONATION INFO -->
+        <div class="space-y-5">
+          <span class="inline-flex items-center gap-1.5 bg-libTerracotta text-white text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+            <span>💛</span> অনলাইন অনুদান পোর্টাল
+          </span>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-libGreen leading-snug">
+            লাইব্রেরির অগ্রযাত্রায় আপনার হাত বাড়িয়ে দিন ✨
+          </h2>
+          <p class="text-xs md:text-sm text-libText/80 leading-relaxed">
+            আপনার পাঠানো অনুদান সরাসরি লাইব্রেরির নতুন বই সংগ্রহ, অসচ্ছল শিক্ষার্থীদের শিক্ষাবৃত্তি এবং ফ্রি কম্পিউটার ট্রেনিং কার্যক্রমে ব্যবহৃত হয়।
+          </p>
+
+          <!-- PAYMENT METHODS INFO CARDS -->
+          <div class="space-y-3 pt-2">
+            
+            <div class="p-3.5 bg-white/90 backdrop-blur-xs rounded-2xl border border-libGold/30 flex items-center justify-between shadow-xs hover:shadow-md transition">
+              <div class="flex items-center space-x-3 space-x-reverse">
+                <span class="w-10 h-10 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center font-extrabold text-xs shadow-inner">Bk</span>
+                <div>
+                  <p class="font-bold text-xs text-libGreen flex items-center gap-1"><span>📱</span> বিকাশ (Personal / Send Money)</p>
+                  <p class="text-xs text-gray-600 font-mono font-semibold">+৮৮০ ১৭০০-০০০০০০</p>
+                </div>
+              </div>
+              <button onclick="navigator.clipboard.writeText('01700000000'); alert('নম্বর কপি হয়েছে! 📋');" class="text-[11px] bg-libCream hover:bg-libGold text-libGreen font-bold px-3 py-1.5 rounded-xl transition shadow-xs">
+                কপি <i class="fa-regular fa-copy mr-1"></i>
+              </button>
+            </div>
+
+            <div class="p-3.5 bg-white/90 backdrop-blur-xs rounded-2xl border border-libGold/30 flex items-center justify-between shadow-xs hover:shadow-md transition">
+              <div class="flex items-center space-x-3 space-x-reverse">
+                <span class="w-10 h-10 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center font-extrabold text-xs shadow-inner">Ng</span>
+                <div>
+                  <p class="font-bold text-xs text-libGreen flex items-center gap-1"><span>📱</span> নগদ (Personal)</p>
+                  <p class="text-xs text-gray-600 font-mono font-semibold">+৮৮০ ১৭০০-০০০০০০</p>
+                </div>
+              </div>
+              <button onclick="navigator.clipboard.writeText('01700000000'); alert('নম্বর কপি হয়েছে! 📋');" class="text-[11px] bg-libCream hover:bg-libGold text-libGreen font-bold px-3 py-1.5 rounded-xl transition shadow-xs">
+                কপি <i class="fa-regular fa-copy mr-1"></i>
+              </button>
+            </div>
+
+            <div class="p-3.5 bg-white/90 backdrop-blur-xs rounded-2xl border border-libGold/30 flex items-center justify-between shadow-xs">
+              <div class="flex items-center space-x-3 space-x-reverse">
+                <span class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center font-extrabold text-xs shadow-inner">🏦</span>
+                <div>
+                  <p class="font-bold text-xs text-libGreen flex items-center gap-1"><span>🏛️</span> ব্যাংক একাউন্ট</p>
+                  <p class="text-[11px] text-gray-600 font-medium">নওদাগ্রাম গণগ্রন্থাগার, A/C: 123456789 (ইসলামী ব্যাংক)</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- DONATION NOTIFICATION FORM -->
+        <div class="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-libGold/35 relative">
+          <h3 class="text-base md:text-lg font-bold text-libGreen mb-1 flex items-center gap-2">
+            <span>📩</span> অনুদানের তথ্য নিশ্চিত করুন
+          </h3>
+          <p class="text-xs text-libText/65 mb-5">টাকা পাঠানোর পর নিচের ফরমটি পূরণ করলে তা আমাদের অনলাইন রসিদে যুক্ত হবে।</p>
+
+          <form id="donationForm" onsubmit="submitDonationInfo(event)" class="space-y-3.5 text-xs">
+            <div>
+              <label class="block font-bold text-libGreen mb-1">আপনার নাম 👤</label>
+              <input type="text" required class="w-full p-2.5 border border-libGold/30 rounded-xl focus:outline-none focus:border-libGreen bg-libBg/50 text-xs shadow-xs" placeholder="আপনার সম্পূর্ণ নাম লিখুন">
+            </div>
+            <div>
+              <label class="block font-bold text-libGreen mb-1">মোবাইল নম্বর 📞</label>
+              <input type="tel" required class="w-full p-2.5 border border-libGold/30 rounded-xl focus:outline-none focus:border-libGreen bg-libBg/50 text-xs shadow-xs" placeholder="০১৭XXXXXXXX">
+            </div>
+            <div>
+              <label class="block font-bold text-libGreen mb-1">অনুদানের পরিমাণ (টাকা) 💵</label>
+              <input type="number" required class="w-full p-2.5 border border-libGold/30 rounded-xl focus:outline-none focus:border-libGreen bg-libBg/50 text-xs shadow-xs" placeholder="যেমন: ৫০০">
+            </div>
+            <div>
+              <label class="block font-bold text-libGreen mb-1">পেমেন্ট মাধ্যম ও TrxID / লেনদেন নম্বর 🧾</label>
+              <input type="text" required class="w-full p-2.5 border border-libGold/30 rounded-xl focus:outline-none focus:border-libGreen bg-libBg/50 text-xs shadow-xs" placeholder="যেমন: bKash - 9A82J...">
+            </div>
+            <button type="submit" class="w-full bg-libGreen hover:bg-libGreenLight text-white font-bold py-3 rounded-xl transition transform hover:-translate-y-0.5 text-xs shadow-md flex items-center justify-center gap-2">
+              <span>তথ্য জমা দিন</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-libGreen text-gray-300 py-6 border-t-2 border-libGold text-xs mt-12 shadow-inner">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-right">
+      <div class="flex items-center space-x-3 space-x-reverse justify-center md:justify-start">
+        <div class="w-8 h-8 rounded-full bg-libGold text-libGreen flex items-center justify-center font-bold text-base shadow">
+          🏛️
+        </div>
+        <div>
+          <span class="font-bold text-white text-sm block leading-none">নওদাগ্রাম গণগ্রন্থাগার</span>
+          <span class="text-[10px] text-amber-200/80">NAODAGRAM PUBLIC LIBRARY</span>
+        </div>
+      </div>
+      <div class="text-[11px] text-gray-400">
+        &copy; ২০২৬ নওদাগ্রাম গণগ্রন্থাগার। সর্বস্বত্ব সংরক্ষিত। 🌟
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. TABLE FILTER FUNCTION WITH SMOOTH FEEDBACK
+    function filterTable() {
+      const searchInput = document.getElementById('tableSearch').value.toLowerCase();
+      const typeFilter = document.getElementById('typeFilter').value;
+      const rows = document.querySelectorAll('.table-row');
+
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        const rowType = row.getAttribute('data-type');
+
+        const matchesSearch = text.includes(searchInput);
+        const matchesType = (typeFilter === 'all' || rowType === typeFilter);
+
+        if (matchesSearch && matchesType) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // 2. DONATION FORM SUBMISSION ALERT
+    function submitDonationInfo(event) {
+      event.preventDefault();
+      alert('ধন্যবাদ! আপনার অনুদানের তথ্য সফলভাবে জমা দেওয়া হয়েছে। ভেরিফিকেশন শেষে তা মূল তালিকায় যুক্ত করা হবে। 💛🎉');
+      document.getElementById('donationForm').reset();
+    }
+  </script>
+
+</body>
+</html>

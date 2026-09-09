@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>সকল বইয়ের তালিকা ও ক্যাটালগ - নওদাগ্রাম গণগ্রন্থাগার</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts (Hind Siliguri for Bengali) -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            libBg: '#FDFBF7',
+            libCream: '#F4EFE6',
+            libGreen: '#1B4332',
+            libGreenLight: '#2D6A4F',
+            libGold: '#D4AF37',
+            libGoldHover: '#B59226',
+            libTerracotta: '#C05A46',
+            libText: '#2B2D42'
+          },
+          fontFamily: {
+            sans: ['Hind Siliguri', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FDFBF7;
+      color: #2B2D42;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    /* Smooth Glassmorphism & Compact Card Hover */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -5px rgba(27, 67, 50, 0.08);
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-4px) rotate(2deg); }
+    }
+    .animate-float {
+      animation: floatSlow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.02); }
+    }
+    .animate-glow {
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen selection:bg-libGold/30 selection:text-libGreen">
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="bg-libGreen text-amber-200 text-xs md:text-sm py-2 px-4 border-b border-libGold/35">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-2 space-x-reverse animate-pulse">
+        <span>📚✨</span>
+        <span>আমাদের ডিজিটাল সংগ্রহশালায় যুক্ত হয়েছে নতুন শত শত বই!</span>
+      </div>
+      <a href="index.html" class="hover:text-white transition font-semibold text-xs flex items-center group">
+        <span>মূল পেজে ফিরে যান</span>
+        <i class="fa-solid fa-arrow-right mr-1.5 transform group-hover:-translate-x-1 transition-transform"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="sticky top-0 z-40 bg-libCream/90 backdrop-blur-md border-b border-libGold/30 shadow-sm transition-all">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-3 space-x-reverse group">
+        <div class="w-10 h-10 rounded-full bg-libGreen text-libGold flex items-center justify-center text-lg shadow-md border-2 border-libGold animate-float">
+          📖
+        </div>
+        <div>
+          <h1 class="text-lg md:text-xl font-bold text-libGreen leading-tight">নওদাগ্রাম গণগ্রন্থাগার</h1>
+          <p class="text-[10px] text-libGreen/80 font-semibold tracking-wider">ডিজিটাল বুক ক্যাটালগ</p>
+        </div>
+      </a>
+
+      <div class="flex items-center space-x-3 space-x-reverse">
+        <a href="transparency-donate.html" class="bg-libGold hover:bg-libGoldHover text-libGreen font-bold px-4 py-2 rounded-xl shadow-md text-xs transition transform hover:scale-105 flex items-center space-x-1 space-x-reverse">
+          <i class="fa-solid fa-hand-holding-dollar ml-1"></i>
+          <span>স্বচ্ছতা ও অনুদান 💛</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow container mx-auto px-4 py-10 space-y-10">
+
+    <!-- PAGE HEADER -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="inline-flex items-center gap-1.5 bg-libGold/20 text-libGreen text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider border border-libGold/30 shadow-sm animate-glow">
+        <span>📖</span> লাইব্রেরি ক্যাটালগ
+      </span>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-libGreen leading-tight">
+        সকল বইয়ের তালিকা 📚
+      </h1>
+      <p class="text-xs md:text-sm text-libText/75 leading-relaxed max-w-xl mx-auto">
+        গুগল শিট থেকে সিঙ্ক করা ডিজিটাল লাইব্রেরি ক্যাটালগ। ক্যাটাগরি বা নাম দিয়ে খুব সহজেই আপনার কাঙ্ক্ষিত বই খুঁজে নিন।
+      </p>
+    </div>
+
+    <!-- SEARCH & FILTER CONTROLS BAR -->
+    <section class="glass-card p-4 rounded-2xl shadow-sm border border-libGold/30 flex flex-col md:flex-row gap-3 justify-between items-center">
+      
+      <!-- Search Input -->
+      <div class="relative w-full md:w-80">
+        <input 
+          type="text" 
+          id="bookSearchInput" 
+          oninput="filterBooks()" 
+          placeholder="বই বা লেখকের নাম দিয়ে খুঁজুন..." 
+          class="w-full pl-9 pr-4 py-2 text-xs border border-libGold/40 rounded-xl focus:outline-none focus:border-libGreen bg-white shadow-inner font-medium"
+        >
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400 text-xs"></i>
+      </div>
+
+      <!-- Category Filter Dropdown -->
+      <div class="flex flex-wrap gap-2 w-full md:w-auto items-center">
+        <select id="categoryFilter" onchange="filterBooks()" class="px-3 py-2 text-xs border border-libGold/40 rounded-xl focus:outline-none focus:border-libGreen bg-white shadow-sm cursor-pointer font-bold text-libGreen">
+          <option value="all">📂 সকল ক্যাটাগরি</option>
+          <option value="novel">📖 উপন্যাস ও সাহিত্য</option>
+          <option value="history">🏛️ ইতিহাস ও ঐতিহ্য</option>
+          <option value="islamic">🌙 ইসলামী সাহিত্য</option>
+          <option value="science">🔬 বিজ্ঞান ও প্রযুক্তি</option>
+          <option value="children">🎈 শিশু-কিশোর ও ছড়া</option>
+        </select>
+
+        <select id="stockFilter" onchange="filterBooks()" class="px-3 py-2 text-xs border border-libGold/40 rounded-xl focus:outline-none focus:border-libGreen bg-white shadow-sm cursor-pointer font-bold text-libGreen">
+          <option value="all">⚡ স্ট্যাটাস (সব)</option>
+          <option value="available">🟢 স্টকে আছে</option>
+          <option value="issued">🔴 ইস্যুকৃত</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- BOOKS COMPACT LIST CONTAINER (Dynamic Loading) -->
+    <div id="booksGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Loading Spinner -->
+      <div class="col-span-full text-center py-12 text-libGreen font-bold text-sm">
+        <i class="fa-solid fa-spinner fa-spin text-xl mb-2"></i>
+        <p>বইয়ের তালিকা লোড হচ্ছে...</p>
+      </div>
+    </div>
+
+    <!-- EMPTY SEARCH STATE (Hidden by default) -->
+    <div id="noResults" class="hidden text-center py-12 space-y-2 glass-card rounded-2xl">
+      <div class="text-4xl">🔍</div>
+      <h3 class="text-sm font-bold text-libGreen">দুঃখিত, কোনো বই পাওয়া যায়নি</h3>
+      <p class="text-xs text-libText/65">আপনার অনুসন্ধানের সাথে মিলে যায় এমন কোনো বই খুঁজে পাওয়া যায়নি।</p>
+    </div>
+
+  </main>
+
+  <!-- BOOK DETAILS MODAL POPUP -->
+  <div id="bookModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-libGold/40 relative transform transition-all scale-95 opacity-0 duration-300" id="modalContent">
+      <button onclick="closeBookDetails()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-libCream text-libGreen flex items-center justify-center font-bold hover:bg-libGold transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="flex gap-4 items-start">
+        <img id="modalImg" src="" alt="Book Cover" class="w-20 h-28 object-cover rounded-xl shadow-md border border-libGold/30 flex-shrink-0">
+        <div class="space-y-1.5 text-xs flex-grow">
+          <span id="modalCategory" class="bg-libGold/20 text-libGreen font-bold px-2 py-0.5 rounded inline-block text-[10px]"></span>
+          <h2 id="modalTitle" class="text-sm md:text-base font-bold text-libGreen leading-snug"></h2>
+          <p id="modalAuthor" class="text-libText/80 font-semibold"></p>
+          <p id="modalStock" class="font-bold pt-0.5"></p>
+          <p id="modalDate" class="text-gray-400 text-[10px]"></p>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-gray-100">
+        <h4 class="font-bold text-xs text-libGreen mb-1">সংক্ষিপ্ত বিবরণ: 📝</h4>
+        <p id="modalDesc" class="text-xs text-libText/75 leading-relaxed"></p>
+      </div>
+
+      <div class="mt-5 text-right">
+        <button onclick="closeBookDetails()" class="bg-libGreen hover:bg-libGreenLight text-white font-bold px-4 py-2 rounded-xl text-xs transition shadow-md">
+          বন্ধ করুন ✖
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-libGreen text-gray-300 py-6 border-t-2 border-libGold text-xs mt-12 shadow-inner">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-right">
+      <div class="flex items-center space-x-3 space-x-reverse justify-center md:justify-start">
+        <div class="w-8 h-8 rounded-full bg-libGold text-libGreen flex items-center justify-center font-bold text-base shadow">
+          📖
+        </div>
+        <div>
+          <span class="font-bold text-white text-sm block leading-none">নওদাগ্রাম গণগ্রন্থাগার</span>
+          <span class="text-[10px] text-amber-200/80">NAODAGRAM PUBLIC LIBRARY</span>
+        </div>
+      </div>
+      <div class="text-[11px] text-gray-400">
+        &copy; ২০২৬ নওদাগ্রাম গণগ্রন্থাগার। সর্বস্বত্ব সংরক্ষিত। 🌟
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Google Sheets Web App URL
+    const webAppUrl = 'https://script.google.com/macros/s/AKfycbw3B9t_5RcgMMkfn-cjfl0oLTkI2xSxJLRu_5eJH55KmkgvvShL2FfdMU18lCzmpP3xWQ/exec';
+
+    // Fetch books from Google Sheets on page load
+    async function fetchBooksFromSheet() {
+      try {
+        const response = await fetch(webAppUrl);
+        const books = await response.json();
+        
+        const booksGrid = document.getElementById('booksGrid');
+        booksGrid.innerHTML = ''; // Clear loading message
+
+        if (books.length === 0) {
+          booksGrid.innerHTML = '<div class="col-span-full text-center py-8 text-xs text-libText">কোনো বই পাওয়া যায়নি।</div>';
+          return;
+        }
+
+        books.forEach(book => {
+          const isAvailable = String(book.Stock).toLowerCase() === 'available';
+          const stockBadge = isAvailable 
+            ? '<span class="text-[10px] text-emerald-600 font-bold">🟢 স্টকে আছে</span>' 
+            : '<span class="text-[10px] text-red-600 font-bold">🔴 ইস্যুকৃত</span>';
+          
+          const stockValText = isAvailable ? '🟢 স্টকে আছে' : '🔴 ইস্যুকৃত (বর্তমানে ধার দেওয়া আছে)';
+          
+          // Category Mapping
+          let catName = 'সাধারণ';
+          let catKey = String(book.Category).toLowerCase();
+          if(catKey === 'novel') catName = 'উপন্যাস';
+          else if(catKey === 'history') catName = 'ইতিহাস';
+          else if(catKey === 'science') catName = 'বিজ্ঞান';
+          else if(catKey === 'islamic') catName = 'ইসলামী সাহিত্য';
+          else if(catKey === 'children') catName = 'শিশু-কিশোর';
+
+          const bookCard = `
+            <div class="glass-card p-3 rounded-2xl shadow-sm flex items-center justify-between gap-3 group book-item" data-category="${catKey}" data-stock="${isAvailable ? 'available' : 'issued'}">
+              <div class="flex items-center space-x-3 space-x-reverse">
+                <img src="${book.Image}" alt="প্রচ্ছদ" class="w-12 h-16 object-cover rounded-xl shadow-xs border border-libGold/30 flex-shrink-0">
+                <div>
+                  <div class="flex items-center gap-2 mb-0.5">
+                    <span class="text-[9px] font-bold text-libGreen bg-libGold/20 px-2 py-0.5 rounded">${catName}</span>
+                    ${stockBadge}
+                  </div>
+                  <h3 class="font-bold text-xs md:text-sm text-libGreen group-hover:text-libGoldTransition transition">${book.Title}</h3>
+                  <p class="text-[11px] text-libText/70">লেখক: ${book.Author}</p>
+                </div>
+              </div>
+              <div class="text-right flex flex-col items-end gap-1 flex-shrink-0">
+                <span class="text-[10px] text-gray-400">সংযুক্ত: ${book.Date}</span>
+                <button onclick="openBookDetails('${book.Title.replace(/'/g, "\\'")}', '${book.Author.replace(/'/g, "\\'")}', '${catName}', '${stockValText}', '${book.Date}', '${book.Image}', '${book.Description ? book.Description.replace(/'/g, "\\'") : ''}')" class="bg-libCream hover:bg-libGold text-libGreen font-bold px-2.5 py-1 rounded-lg text-[11px] transition shadow-xs flex items-center gap-1">
+                  <span>বিস্তারিত</span> <i class="fa-solid fa-circle-info"></i>
+                </button>
+              </div>
+            </div>
+          `;
+          booksGrid.innerHTML += bookCard;
+        });
+      } catch (error) {
+        console.error('ডেটা লোড করতে সমস্যা হয়েছে:', error);
+        document.getElementById('booksGrid').innerHTML = '<div class="col-span-full text-center py-8 text-xs text-red-600 font-bold">সার্ভার থেকে ডেটা লোড করতে সমস্যা হয়েছে। অনুগ্রহ করে ইন্টারনেট সংযোগ চেক করুন।</div>';
+      }
+    }
+
+    window.onload = function() {
+      fetchBooksFromSheet();
+    };
+
+    // 1. DYNAMIC SEARCH & FILTER FUNCTION
+    function filterBooks() {
+      const searchInput = document.getElementById('bookSearchInput').value.toLowerCase();
+      const categoryFilter = document.getElementById('categoryFilter').value;
+      const stockFilter = document.getElementById('stockFilter').value;
+      
+      const bookItems = document.querySelectorAll('.book-item');
+      let visibleCount = 0;
+
+      bookItems.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        const category = item.getAttribute('data-category');
+        const stock = item.getAttribute('data-stock');
+
+        const matchesSearch = text.includes(searchInput);
+        const matchesCategory = (categoryFilter === 'all' || category === categoryFilter);
+        const matchesStock = (stockFilter === 'all' || stock === stockFilter);
+
+        if (matchesSearch && matchesCategory && matchesStock) {
+          item.style.display = 'flex';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Show/Hide No Results Message
+      const noResults = document.getElementById('noResults');
+      if (visibleCount === 0) {
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+      }
+    }
+
+    // 2. MODAL POPUP FOR BOOK DETAILS
+    function openBookDetails(title, author, category, stock, date, imgUrl, desc) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalAuthor').innerText = 'লেখক: ' + author;
+      document.getElementById('modalCategory').innerText = category;
+      document.getElementById('modalStock').innerText = stock;
+      document.getElementById('modalDate').innerText = 'লাইব্রেরিতে যুক্ত হয়েছে: ' + date;
+      document.getElementById('modalImg').src = imgUrl;
+      document.getElementById('modalDesc').innerText = desc || 'কোনো বিবরণ দেওয়া হয়নি।';
+
+      const modal = document.getElementById('bookModal');
+      const modalContent = document.getElementById('modalContent');
+      
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modalContent.classList.remove('scale-95', 'opacity-0');
+        modalContent.classList.add('scale-100', 'opacity-100');
+      }, 10);
+    }
+
+    function closeBookDetails() {
+      const modal = document.getElementById('bookModal');
+      const modalContent = document.getElementById('modalContent');
+      
+      modalContent.classList.remove('scale-100', 'opacity-100');
+      modalContent.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 200);
+    }
+  </script>
+
+</body>
+</html>
