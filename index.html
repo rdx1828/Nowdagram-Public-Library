@@ -214,100 +214,21 @@
         <div class="text-center max-w-2xl mx-auto mb-10">
           <span class="text-libTerracotta font-bold text-xs tracking-wider uppercase">ডিজিটাল ক্যাটালগ</span>
           <h2 class="text-3xl font-bold text-libGreen mt-1">আমাদের গ্রন্থাগারের বইসমূহ 📖</h2>
-          <p class="text-sm text-libText/70 mt-2">আপনার পছন্দের বই সহজে খুঁজে নিতে সার্চ বার বা ফিল্টার ব্যবহার করুন।</p>
+          <p class="text-sm text-libText/70 mt-2">আমাদের সংগৃহীত কিছু সাম্প্রতিক বই।</p>
         </div>
 
-        <!-- ENHANCED LIVE SEARCH BAR -->
-        <div class="max-w-xl mx-auto mb-8 relative">
-          <input 
-            type="text" 
-            id="searchInput" 
-            oninput="searchBooks()" 
-            placeholder="বইয়ের নাম বা লেখকের নাম দিয়ে খুঁজুন..." 
-            class="w-full pl-4 pr-10 py-3 rounded-full border-2 border-libGold/40 focus:border-libGreen focus:outline-none shadow-sm text-sm text-libText"
-          >
-          <div class="absolute left-4 top-3.5 text-libGreen text-base">
-            <i class="fa-solid fa-magnifying-glass"></i>
+        <!-- DYNAMIC BOOKS GRID FROM EXCEL/APPS SCRIPT -->
+        <div id="homeBookGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div class="col-span-full text-center py-8 text-libText/60 text-sm">
+            <i class="fa-solid fa-spinner fa-spin text-libGreen text-xl"></i> বইয়ের তালিকা লোড হচ্ছে...
           </div>
         </div>
 
-        <!-- CATEGORY FILTERS -->
-        <div class="flex flex-wrap justify-center gap-2 mb-10">
-          <button onclick="filterBooks('all', event)" class="cat-btn active bg-libGreen text-white px-4 py-1.5 rounded-full text-xs font-medium transition">সকল</button>
-          <button onclick="filterBooks('novel', event)" class="cat-btn bg-libCream text-libGreen hover:bg-libGold/30 px-4 py-1.5 rounded-full text-xs font-medium transition">উপন্যাস</button>
-          <button onclick="filterBooks('history', event)" class="cat-btn bg-libCream text-libGreen hover:bg-libGold/30 px-4 py-1.5 rounded-full text-xs font-medium transition">ইতিহাস ও মুক্তিযুদ্ধ</button>
-          <button onclick="filterBooks('science', event)" class="cat-btn bg-libCream text-libGreen hover:bg-libGold/30 px-4 py-1.5 rounded-full text-xs font-medium transition">বিজ্ঞান ও প্রযুক্তি</button>
-          <button onclick="filterBooks('kids', event)" class="cat-btn bg-libCream text-libGreen hover:bg-libGold/30 px-4 py-1.5 rounded-full text-xs font-medium transition">শিশুতোষ</button>
-        </div>
-
-        <!-- BOOK CARDS GRID -->
-        <div id="bookGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          
-          <div class="book-card novel glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between" data-category="novel">
-            <div>
-              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
-                <span class="z-10">📕</span>
-                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">উপন্যাস</span>
-              </div>
-              <h3 class="font-bold text-lg text-libGreen book-title">গীতাঞ্জলি</h3>
-              <p class="text-xs text-libText/70 book-author">রবীন্দ্রনাথ ঠাকুর</p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
-              <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
-              <button onclick="openBookModal('গীতাঞ্জলি', 'রবীন্দ্রনাথ ঠাকুর', 'উপন্যাস', 'উপলব্ধ')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
-            </div>
-          </div>
-
-          <div class="book-card history glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between" data-category="history">
-            <div>
-              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
-                <span class="z-10">📗</span>
-                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">ইতিহাস</span>
-              </div>
-              <h3 class="font-bold text-lg text-libGreen book-title">অসমাপ্ত আত্মজীবনী</h3>
-              <p class="text-xs text-libText/70 book-author">শেখ মুজিবুর রহমান</p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
-              <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
-              <button onclick="openBookModal('অসমাপ্ত আত্মজীবনী', 'শেখ মুজিবুর রহমান', 'ইতিহাস', 'উপলব্ধ')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
-            </div>
-          </div>
-
-          <div class="book-card science glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between" data-category="science">
-            <div>
-              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
-                <span class="z-10">📘</span>
-                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">বিজ্ঞান</span>
-              </div>
-              <h3 class="font-bold text-lg text-libGreen book-title">মহাবিশ্বের সংক্ষিপ্ত ইতিহাস</h3>
-              <p class="text-xs text-libText/70 book-author">স্টিফেন হকিং</p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
-              <span class="text-xs text-amber-600 font-semibold"><i class="fa-solid fa-clock ml-1"></i> ইস্যু করা</span>
-              <button onclick="openBookModal('মহাবিশ্বের সংক্ষিপ্ত ইতিহাস', 'স্টিফেন হকিং', 'বিজ্ঞান', 'ইস্যু করা')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
-            </div>
-          </div>
-
-          <div class="book-card kids glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between" data-category="kids">
-            <div>
-              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
-                <span class="z-10">📙</span>
-                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">শিশুতোষ</span>
-              </div>
-              <h3 class="font-bold text-lg text-libGreen book-title">দিপু নম্বর টু</h3>
-              <p class="text-xs text-libText/70 book-author">মুহম্মদ জাফর ইকবাল</p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
-              <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
-              <button onclick="openBookModal('দিপু নম্বর টু', 'মুহম্মদ জাফর ইকবাল', 'শিশুতোষ', 'উপলব্ধ')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
-            </div>
-          </div>
-
-        </div>
-        
-        <!-- NO RESULT MESSAGE -->
-        <div id="noBookMsg" class="hidden text-center py-8 text-libText/60 text-sm">
-          কোনো বই খুঁজে পাওয়া যায়নি!
+        <!-- ALL BOOKS VIEW BUTTON -->
+        <div class="text-center mt-12">
+          <a href="all-books.html" class="inline-flex items-center bg-libGreen hover:bg-libGreenLight text-white font-bold px-8 py-3 rounded-lg shadow-md transition transform hover:-translate-y-0.5 text-sm">
+            সব বই দেখুন <i class="fa-solid fa-arrow-left mr-2"></i>
+          </a>
         </div>
 
       </div>
@@ -472,7 +393,9 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
       <div class="text-center">
-        <span class="text-4xl block mb-2">📖</span>
+        <div id="modalBookImgContainer" class="mb-3 flex justify-center">
+          <span class="text-4xl block">📖</span>
+        </div>
         <h3 id="modalBookTitle" class="text-lg font-bold text-libGreen">বইয়ের নাম</h3>
         <p id="modalBookAuthor" class="text-xs text-gray-600 mb-4">লেখকের নাম</p>
         
@@ -604,11 +527,19 @@
       document.getElementById(id).classList.add('hidden');
     }
 
-    function openBookModal(title, author, category, status) {
+    function openBookModal(title, author, category, status, imageUrl) {
       document.getElementById('modalBookTitle').innerText = title;
       document.getElementById('modalBookAuthor').innerText = author;
       document.getElementById('modalBookCat').innerText = category;
       document.getElementById('modalBookStatus').innerText = status;
+      
+      const imgContainer = document.getElementById('modalBookImgContainer');
+      if (imageUrl && imageUrl !== '') {
+        imgContainer.innerHTML = `<img src="${imageUrl}" alt="${title}" class="w-24 h-32 object-cover mx-auto rounded shadow border border-libGold/30">`;
+      } else {
+        imgContainer.innerHTML = `<span class="text-4xl block">📖</span>`;
+      }
+      
       openModal('bookModal');
     }
 
@@ -646,7 +577,6 @@
       }, 500);
     }
 
-    // Change quote every 45 seconds
     setInterval(changeRandomQuote, 45000);
 
     // 4. ANIMATED COUNTER LOGIC
@@ -654,7 +584,7 @@
       const counters = document.querySelectorAll('.counter');
       counters.forEach(counter => {
         const target = +counter.getAttribute('data-target');
-        const duration = 2000; // 2 seconds
+        const duration = 2000;
         const stepTime = 20;
         const steps = duration / stepTime;
         const increment = target / steps;
@@ -672,62 +602,146 @@
       });
     }
 
-    // Trigger counters on load
     window.addEventListener('load', () => {
       startCounters();
+      loadHomeBooks();
     });
 
-    // 5. ENHANCED BOOK SEARCH & FILTER LOGIC
-    let currentCategory = 'all';
+    // 5. FETCH BOOKS FROM GOOGLE APPS SCRIPT FOR HOMEPAGE (3-4 books)
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxx-zCLcee_Z9T8WnZhuwAbtRPUh-vCbVslpx8D14Jx_99MjUKq-BGwNLN-3w9lcESeWA/exec";
 
-    function searchBooks() {
-      const input = document.getElementById('searchInput').value.trim().toLowerCase();
-      const cards = document.getElementsByClassName('book-card');
-      let visibleCount = 0;
+    function loadHomeBooks() {
+      const homeGrid = document.getElementById('homeBookGrid');
+      
+      // Fetching from Apps Script. If action=books parameter or default endpoint returns books array
+      fetch(SCRIPT_URL + "?type=books")
+        .then(response => response.json())
+        .then(data => {
+          // If the script returns general data or specific book list
+          // Let's handle both array of books or object with books key
+          let booksList = Array.isArray(data) ? data : (data.books || data.data || []);
+          
+          homeGrid.innerHTML = '';
 
-      Array.from(cards).forEach(card => {
-        const title = card.querySelector('.book-title').innerText.toLowerCase();
-        const author = card.querySelector('.book-author').innerText.toLowerCase();
-        const category = card.getAttribute('data-category');
+          if (booksList.length === 0) {
+            // Fallback sample data if sheets don't have book list structured yet
+            booksList = [
+              { title: "গীতাঞ্জলি", author: "রবীন্দ্রনাথ ঠাকুর", category: "উপন্যাস", status: "উপলব্ধ", image: "" },
+              { title: "অসমাপ্ত আত্মজীবনী", author: "শেখ মুজিবুর রহমান", category: "ইতিহাস", status: "উপলব্ধ", image: "" },
+              { title: "মহাবিশ্বের সংক্ষিপ্ত ইতিহাস", author: "স্টিফেন হকিং", category: "বিজ্ঞান", status: "ইস্যু করা", image: "" },
+              { title: "দিপু নম্বর টু", author: "মুহম্মদ জাফর ইকবাল", category: "শিশুতোষ", status: "উপলব্ধ", image: "" }
+            ];
+          }
 
-        const matchesSearch = title.includes(input) || author.includes(input);
-        const matchesCat = (currentCategory === 'all' || category === currentCategory);
+          // Take only first 4 books for the homepage preview
+          const displayBooks = booksList.slice(0, 4);
 
-        if (matchesSearch && matchesCat) {
-          card.style.display = "flex";
-          visibleCount++;
-        } else {
-          card.style.display = "none";
-        }
-      });
+          displayBooks.forEach(book => {
+            const title = book.Title || book.title || 'বইয়ের নাম';
+            const author = book.Author || book.author || 'লেখক';
+            const category = book.Category || book.category || 'সাধারণ';
+            const status = book.Status || book.status || 'উপলব্ধ';
+            const image = book.Image || book.image || book.ImageUrl || '';
 
-      const noMsg = document.getElementById('noBookMsg');
-      if (visibleCount === 0) {
-        noMsg.classList.remove('hidden');
-      } else {
-        noMsg.classList.add('hidden');
-      }
-    }
+            const card = document.createElement('div');
+            card.className = "glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between";
+            
+            let imgHTML = '';
+            if (image && image.trim() !== '') {
+              imgHTML = `<div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center relative overflow-hidden">
+                <img src="${image}" alt="${title}" class="w-full h-full object-cover">
+                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">${category}</span>
+              </div>`;
+            } else {
+              imgHTML = `<div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
+                <span class="z-10">📖</span>
+                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">${category}</span>
+              </div>`;
+            }
 
-    function filterBooks(category, evt) {
-      currentCategory = category;
-      const buttons = document.getElementsByClassName('cat-btn');
+            let statusHTML = status === 'উপলব্ধ' 
+              ? `<span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> ${status}</span>`
+              : `<span class="text-xs text-amber-600 font-semibold"><i class="fa-solid fa-clock ml-1"></i> ${status}</span>`;
 
-      Array.from(buttons).forEach(btn => {
-        btn.classList.remove('bg-libGreen', 'text-white');
-        btn.classList.add('bg-libCream', 'text-libGreen');
-      });
-
-      evt.target.classList.remove('bg-libCream', 'text-libGreen');
-      evt.target.classList.add('bg-libGreen', 'text-white');
-
-      searchBooks();
+            card.innerHTML = `
+              <div>
+                ${imgHTML}
+                <h3 class="font-bold text-lg text-libGreen truncate">${title}</h3>
+                <p class="text-xs text-libText/70">${author}</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+                ${statusHTML}
+                <button onclick="openBookModal('${title.replace(/'/g, "\\'")}', '${author.replace(/'/g, "\\'")}', '${category}', '${status}', '${image}')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+              </div>
+            `;
+            homeGrid.appendChild(card);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching books:', error);
+          // Fallback view in case of network/script error
+          homeGrid.innerHTML = `
+            <div class="book-card novel glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
+              <div>
+                <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
+                  <span class="z-10">📕</span>
+                  <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">উপন্যাস</span>
+                </div>
+                <h3 class="font-bold text-lg text-libGreen book-title">গীতাঞ্জলি</h3>
+                <p class="text-xs text-libText/70 book-author">রবীন্দ্রনাথ ঠাকুর</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+                <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
+                <button onclick="openBookModal('গীতাঞ্জলি', 'রবীন্দ্রনাথ ঠাকুর', 'উপন্যাস', 'উপলব্ধ', '')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+              </div>
+            </div>
+            <div class="book-card history glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
+              <div>
+                <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
+                  <span class="z-10">📗</span>
+                  <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">ইতিহাস</span>
+                </div>
+                <h3 class="font-bold text-lg text-libGreen book-title">অসমাপ্ত আত্মজীবনী</h3>
+                <p class="text-xs text-libText/70 book-author">শেখ মুজিবুর রহমান</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+                <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
+                <button onclick="openBookModal('অসমাপ্ত আত্মজীবনী', 'শেখ মুজিবুর রহমান', 'ইতিহাস', 'উপলব্ধ', '')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+              </div>
+            </div>
+            <div class="book-card science glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
+              <div>
+                <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
+                  <span class="z-10">📘</span>
+                  <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">বিজ্ঞান</span>
+                </div>
+                <h3 class="font-bold text-lg text-libGreen book-title">মহাবিশ্বের সংক্ষিপ্ত ইতিহাস</h3>
+                <p class="text-xs text-libText/70 book-author">স্টিফেন হকিং</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+                <span class="text-xs text-amber-600 font-semibold"><i class="fa-solid fa-clock ml-1"></i> ইস্যু করা</span>
+                <button onclick="openBookModal('মহাবিশ্বের সংক্ষিপ্ত ইতিহাস', 'স্টিফেন হকিং', 'বিজ্ঞান', 'ইস্যু করা', '')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+              </div>
+            </div>
+            <div class="book-card kids glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
+              <div>
+                <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
+                  <span class="z-10">📙</span>
+                  <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">শিশুতোষ</span>
+                </div>
+                <h3 class="font-bold text-lg text-libGreen book-title">দিপু নম্বর টু</h3>
+                <p class="text-xs text-libText/70 book-author">মুহম্মদ জাফর ইকবাল</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+                <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
+                <button onclick="openBookModal('দিপু নম্বর টু', 'মুহম্মদ জাফর ইকবাল', 'শিশুতোষ', 'উপলব্ধ', '')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+              </div>
+            </div>
+          `;
+        });
     }
 
     // 6. GOOGLE SPREADSHEET BLOOD DONOR INTEGRATION
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyuvj6ju2o3KsEZ7pKYgRKHu2nh9egAOwHRWjwRxHeCbGgQrg93-8UumtrRMcHgXSN7/exec";
-
-    // UPDATED: Submit donor data to Google Apps Script
     function submitDonorData(event) {
       event.preventDefault();
       
@@ -767,7 +781,6 @@
       });
     }
 
-    // UPDATED: Filter donors with robust key checking
     function filterDonors(group) {
       const resultContainer = document.getElementById('donorResult');
       resultContainer.innerHTML = `<p class="text-xs text-center text-libText/60 py-4"><i class="fa-solid fa-spinner fa-spin"></i> ${group} গ্রুপের রক্তদাতা খোঁজা হচ্ছে...</p>`;
