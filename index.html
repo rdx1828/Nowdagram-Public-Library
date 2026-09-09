@@ -3,7 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>নওদাগ্রাম গণগ্রন্থাগার ও সামাজিক কেন্দ্র</title>
+  
+  <!-- SEO & SEARCH ENGINE OPTIMIZATION -->
+  <title>নওদাগ্রাম গণগ্রন্থাগার ও সামাজিক কেন্দ্র | Nowdagram Public Library</title>
+  <meta name="description" content="নওদাগ্রাম গণগ্রন্থাগার ও সামাজিক কেন্দ্র - একটি আধুনিক ডিজিটাল পাঠাগার, রক্তদান নেটওয়ার্ক এবং শিক্ষা উন্নয়ন প্ল্যাটফর্ম। Nowdagram, Kotchandpur, Jhenaidah, Bangladesh.">
+  <meta name="keywords" content="নওদাগ্রাম গণগ্রন্থাগার, Nowdagram Public Library, Nowdagram Library, নওদাগ্রাম লাইব্রেরি, কোটচাঁদপুর লাইব্রেরি, ঝিনাইদহ লাইব্রেরি, রক্তদান নেটওয়ার্ক নওদাগ্রাম">
+  <meta name="author" content="Nowdagram Public Library">
+  <link rel="canonical" href="https://rdx1828.github.io/Nowdagram-Public-Library/">
+
+  <!-- OPEN GRAPH (OG) / SOCIAL MEDIA SHARING TAGS -->
+  <meta property="og:title" content="নওদাগ্রাম গণগ্রন্থাগার ও সামাজিক কেন্দ্র | Nowdagram Public Library">
+  <meta property="og:description" content="জ্ঞানের জানালা হোক উন্মুক্ত। নওদাগ্রাম গণগ্রন্থাগারের ডিজিটাল ক্যাটালগ, রক্তদান সেবা এবং শিক্ষা বৃত্তি প্রোগ্রাম।">
+  <meta property="og:url" content="https://rdx1828.github.io/Nowdagram-Public-Library/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://rdx1828.github.io/Nowdagram-Public-Library/og-image.jpg">
+  <meta property="og:site_name" content="নওদাগ্রাম গণগ্রন্থাগার">
+
+  <!-- TWITTER CARD TAGS -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="নওদাগ্রাম গণগ্রন্থাগার ও সামাজিক কেন্দ্র | Nowdagram Public Library">
+  <meta name="twitter:description" content="জ্ঞানের জানালা হোক উন্মুক্ত। নওদাগ্রাম গণগ্রন্থাগারের ডিজিটাল ক্যাটালগ ও সেবা সমূহের ওয়েবসাইট।">
+  <meta name="twitter:image" content="https://rdx1828.github.io/Nowdagram-Public-Library/og-image.jpg">
+
+  <!-- SCHEMA.ORG STRUCTURED DATA FOR SEARCH ENGINES -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Library",
+    "name": "নওদাগ্রাম গণগ্রন্থাগার ও সামাজিক কেন্দ্র",
+    "alternateName": "Nowdagram Public Library",
+    "url": "https://rdx1828.github.io/Nowdagram-Public-Library/",
+    "logo": "https://rdx1828.github.io/Nowdagram-Public-Library/logo.jpg",
+    "image": "https://rdx1828.github.io/Nowdagram-Public-Library/og-image.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nowdagram, Kotchandpur",
+      "addressRegion": "Jhenaidah",
+      "addressCountry": "Bangladesh"
+    },
+    "foundingDate": "2025",
+    "description": "নওদাগ্রাম গণগ্রন্থাগার একটি আধুনিক পাঠাগার, গবেষণা কেন্দ্র এবং সমাজকল্যাণ প্ল্যাটফর্ম।"
+  }
+  </script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons -->
@@ -58,6 +100,22 @@
     /* QUOTE FADE ANIMATION */
     .quote-transition {
       transition: opacity 0.5s ease-in-out;
+    }
+
+    /* CUSTOM TOAST NOTIFICATION ANIMATION */
+    @keyframes slideIn {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(100%); opacity: 0; }
+    }
+    .toast-animate-in {
+      animation: slideIn 0.4s ease-out forwards;
+    }
+    .toast-animate-out {
+      animation: slideOut 0.4s ease-in forwards;
     }
   </style>
 </head>
@@ -214,17 +272,83 @@
         <div class="text-center max-w-2xl mx-auto mb-10">
           <span class="text-libTerracotta font-bold text-xs tracking-wider uppercase">ডিজিটাল ক্যাটালগ</span>
           <h2 class="text-3xl font-bold text-libGreen mt-1">আমাদের গ্রন্থাগারের বইসমূহ 📖</h2>
-          <p class="text-sm text-libText/70 mt-2">আমাদের সংগৃহীত কিছু সাম্প্রতিক বই।</p>
+          <p class="text-sm text-libText/70 mt-2">আমাদের সংগৃহীত কিছু বিখ্যাত ও জনপ্রিয় বই।</p>
         </div>
 
-        <!-- DYNAMIC BOOKS GRID FROM EXCEL/APPS SCRIPT -->
+        <!-- STATIC FEATURED BOOKS GRID (4 FAMOUS BOOKS WITH COVERS & DETAILS) -->
         <div id="homeBookGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <div class="col-span-full text-center py-8 text-libText/60 text-sm">
-            <i class="fa-solid fa-spinner fa-spin text-libGreen text-xl"></i> বইয়ের তালিকা লোড হচ্ছে...
+          
+          <!-- Book 1 -->
+          <div class="glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
+            <div>
+              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center relative overflow-hidden shadow-inner">
+                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&auto=format&fit=crop&q=60" alt="সঞ্চিতা" class="w-full h-full object-cover transform hover:scale-105 transition duration-300">
+                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2.5 py-0.5 rounded shadow">কবিতা</span>
+              </div>
+              <h3 class="font-bold text-base text-libGreen truncate">সঞ্চিতা</h3>
+              <p class="text-xs text-libText/70 font-medium">কাজী নজরুল ইসলাম</p>
+              <p class="text-[11px] text-libText/60 mt-1.5 line-clamp-2 italic">জাতীয় কবি কাজী নজরুল ইসলামের নির্বাচিত কবিতা ও গানের এক অনন্য সংকলন।</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+              <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
+              <button onclick="openBookModal('সঞ্চিতা', 'কাজী নজরুল ইসলাম', 'কবিতা', 'উপলভ্য', 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&auto=format&fit=crop&q=60', 'জাতীয় কবি কাজী নজরুল ইসলামের নির্বাচিত কবিতা ও গানের এক অনন্য সংকলন।')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+            </div>
           </div>
+
+          <!-- Book 2 -->
+          <div class="glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
+            <div>
+              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center relative overflow-hidden shadow-inner">
+                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=400&auto=format&fit=crop&q=60" alt="এক নজরে পবিত্র আল-কুরআন" class="w-full h-full object-cover transform hover:scale-105 transition duration-300">
+                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2.5 py-0.5 rounded shadow">ইসলামিক</span>
+              </div>
+              <h3 class="font-bold text-base text-libGreen truncate">এক নজরে পবিত্র আল-কুরআন</h3>
+              <p class="text-xs text-libText/70 font-medium">ইসলামিক ফাউন্ডেশন</p>
+              <p class="text-[11px] text-libText/60 mt-1.5 line-clamp-2 italic">পবিত্র কুরআনের সহজ সরল বঙ্গানুবাদ ও সংক্ষিপ্ত তাফসীর সম্বলিত গ্রন্থ।</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+              <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
+              <button onclick="openBookModal('এক নজরে পবিত্র আল-কুরআন', 'ইসলামিক ফাউন্ডেশন', 'ইসলামিক', 'উপলভ্য', 'https://dashboard.imgix.com/?url=https%3A%2F%2F6aa14c85abc6c1d2a743734a.imgix.net%2Fsandbox%2F1000021025.jpg', 'পবিত্র কুরআনের সহজ সরল বঙ্গানুবাদ ও সংক্ষিপ্ত তাফসীর সম্বলিত গ্রন্থ।')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+            </div>
+          </div>
+
+          <!-- Book 3 -->
+          <div class="glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
+            <div>
+              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center relative overflow-hidden shadow-inner">
+                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&auto=format&fit=crop&q=60" alt="সহীহ বুখারী শরীফ" class="w-full h-full object-cover transform hover:scale-105 transition duration-300">
+                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2.5 py-0.5 rounded shadow">হাদিস</span>
+              </div>
+              <h3 class="font-bold text-base text-libGreen truncate">সহীহ বুখারী শরীফ</h3>
+              <p class="text-xs text-libText/70 font-medium">ইমাম বুখারী (রঃ)</p>
+              <p class="text-[11px] text-libText/60 mt-1.5 line-clamp-2 italic">ইসলাম ধর্মের অন্যতম নির্ভরযোগ্য ও প্রামাণিক হাদীস গ্রন্থ সংকলন।</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+              <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
+              <button onclick="openBookModal('সহীহ বুখারী শরীফ', 'ইমাম বুখারী (রঃ)', 'হাদিস', 'উপলভ্য', 'https://6aa14c85abc6c1d2a743734a.imgix.net/sandbox/1000021025.jpg', 'ইসলাম ধর্মের অন্যতম নির্ভরযোগ্য ও প্রামাণিক হাদীস গ্রন্থ সংকলন।')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+            </div>
+          </div>
+
+          <!-- Book 4 -->
+          <div class="glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
+            <div>
+              <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center relative overflow-hidden shadow-inner">
+                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&auto=format&fit=crop&q=60" alt="অসমাপ্ত আত্মজীবনী" class="w-full h-full object-cover transform hover:scale-105 transition duration-300">
+                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2.5 py-0.5 rounded shadow">ইতিহাস</span>
+              </div>
+              <h3 class="font-bold text-base text-libGreen truncate">প্যারাডক্সিক্যাল সাজিদ</h3>
+              <p class="text-xs text-libText/70 font-medium">আরিফ আজাদ</p>
+              <p class="text-[11px] text-libText/60 mt-1.5 line-clamp-2 italic">সাজিদ সিরিজ ছাড়াও আরিফ আজাদ এর বই সমগ্রতে আছে ‘আরজ আলী সমীপে’ এবং ‘সত্যকথন’ (সহলেখক) এর মতো তুমুল জনপ্রিয় বই।</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
+              <span class="text-xs text-amber-600 font-semibold"><i class="fa-solid fa-clock ml-1"></i> ইস্যু করা</span>
+              <button onclick="openBookModal('অসমাপ্ত আত্মজীবনী', 'বঙ্গবন্ধু শেখ মুজিবুর রহমান', 'ইতিহাস', 'ইস্যু করা', 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&auto=format&fit=crop&q=60', 'জাতির পিতা বঙ্গবন্ধু শেখ মুজিবুর রহমানের বর্ণাঢ্য জীবনের প্রামাণিক স্মৃতিকথা।')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
+            </div>
+          </div>
+
         </div>
 
-        <!-- ALL BOOKS VIEW BUTTON -->
+        <!-- ALL BOOKS VIEW BUTTON (LINKS TO GOOGLE SHEETS / FULL BOOKS PAGE) -->
         <div class="text-center mt-12">
           <a href="all-books.html" class="inline-flex items-center bg-libGreen hover:bg-libGreenLight text-white font-bold px-8 py-3 rounded-lg shadow-md transition transform hover:-translate-y-0.5 text-sm">
             সব বই দেখুন <i class="fa-solid fa-arrow-left mr-2"></i>
@@ -308,7 +432,7 @@
                 প্রাথমিক কম্পিউটার পরিচালনা, অফিস অ্যাপ্লিকেশন এবং ইন্টারনেটের নিরাপদ ব্যবহার শেখাতে প্রতি শুক্র ও শনিবার বিশেষ ক্লাস অনুষ্ঠিত হয়।
               </p>
             </div>
-            <button onclick="alert('পরবর্তী ব্যাচের রেজিস্ট্রেশন আগামী মাসের ১ তারিখ থেকে শুরু হবে।')" class="mt-6 w-full bg-libGold text-libGreen text-xs md:text-sm font-bold py-2.5 rounded-lg hover:bg-libGoldHover transition">
+            <button onclick="showToast('পরবর্তী ব্যাচের রেজিস্ট্রেশন আগামী মাসের ১ তারিখ থেকে শুরু হবে।', 'info')" class="mt-6 w-full bg-libGold text-libGreen text-xs md:text-sm font-bold py-2.5 rounded-lg hover:bg-libGoldHover transition">
               কোর্সের সময়সূচী দেখুন
             </button>
           </div>
@@ -386,6 +510,9 @@
     </div>
   </footer>
 
+  <!-- CUSTOM ANIMATED TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
   <!-- MODAL: BOOK DETAILS -->
   <div id="bookModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-sm w-full p-6 relative shadow-2xl">
@@ -397,11 +524,12 @@
           <span class="text-4xl block">📖</span>
         </div>
         <h3 id="modalBookTitle" class="text-lg font-bold text-libGreen">বইয়ের নাম</h3>
-        <p id="modalBookAuthor" class="text-xs text-gray-600 mb-4">লেখকের নাম</p>
+        <p id="modalBookAuthor" class="text-xs text-gray-600 mb-2">লেখকের নাম</p>
+        <p id="modalBookDesc" class="text-xs text-gray-500 mb-4 italic">সংক্ষিপ্ত বর্ণনা</p>
         
         <div class="bg-libCream p-3 rounded-lg text-left text-xs space-y-1.5 mb-5">
           <p><strong>বিভাগ:</strong> <span id="modalBookCat">উপন্যাস</span></p>
-          <p><strong>অবস্থা:</strong> <span id="modalBookStatus" class="text-emerald-600 font-bold">উপলব্ধ</span></p>
+          <p><strong>অবস্থা:</strong> <span id="modalBookStatus" class="text-emerald-600 font-bold">উপলভ্য</span></p>
           <p class="text-[11px] text-gray-500 pt-1">বইটি সংগ্রহের জন্য লাইব্রেরি কেন্দ্রে যোগাযোগ করুন।</p>
         </div>
 
@@ -418,7 +546,7 @@
       </button>
       <h3 class="text-base font-bold text-libGreen mb-4">সদস্যপদের আবেদন</h3>
       
-      <form onsubmit="event.preventDefault(); alert('আপনার আবেদন জমা নেওয়া হয়েছে!'); closeModal('memberModal');" class="space-y-3 text-xs">
+      <form onsubmit="event.preventDefault(); closeModal('memberModal'); showToast('আপনার সদস্যপদের আবেদন সফলভাবে জমা নেওয়া হয়েছে!', 'success');" class="space-y-3 text-xs">
         <div>
           <label class="block font-bold text-libGreen mb-1">পূর্ণ নাম</label>
           <input type="text" required class="w-full p-2 border rounded focus:outline-none focus:border-libGreen">
@@ -446,7 +574,7 @@
       </button>
       <h3 class="text-base font-bold text-libGreen mb-4">বৃত্তির আবেদন ফরম</h3>
       
-      <form onsubmit="event.preventDefault(); alert('বৃত্তির আবেদন গৃহীত হয়েছে!'); closeModal('scholarshipModal');" class="space-y-3 text-xs">
+      <form onsubmit="event.preventDefault(); closeModal('scholarshipModal'); showToast('বৃত্তির আবেদন সফলভাবে গৃহীত হয়েছে!', 'success');" class="space-y-3 text-xs">
         <div>
           <label class="block font-bold text-libGreen mb-1">শিক্ষার্থীর নাম</label>
           <input type="text" required class="w-full p-2 border rounded">
@@ -527,11 +655,35 @@
       document.getElementById(id).classList.add('hidden');
     }
 
-    function openBookModal(title, author, category, status, imageUrl) {
+    // ANIMATED TOAST NOTIFICATION FUNCTION
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      
+      const bgColor = type === 'success' ? 'bg-libGreen text-white border-libGold' : 'bg-libTerracotta text-white border-amber-200';
+      const icon = type === 'success' ? '<i class="fa-solid fa-circle-check text-libGold"></i>' : '<i class="fa-solid fa-circle-info text-white"></i>';
+      
+      toast.className = `pointer-events-auto flex items-center space-x-3 space-x-reverse px-4 py-3 rounded-xl shadow-xl border-2 ${bgColor} text-xs font-medium toast-animate-in`;
+      toast.innerHTML = `
+        <span class="text-base">${icon}</span>
+        <span>${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('toast-animate-in');
+        toast.classList.add('toast-animate-out');
+        setTimeout(() => toast.remove(), 400);
+      }, 3500);
+    }
+
+    function openBookModal(title, author, category, status, imageUrl, description) {
       document.getElementById('modalBookTitle').innerText = title;
       document.getElementById('modalBookAuthor').innerText = author;
       document.getElementById('modalBookCat').innerText = category;
       document.getElementById('modalBookStatus').innerText = status;
+      document.getElementById('modalBookDesc').innerText = description || "বইটি সম্পর্কে বিস্তারিত তথ্য লাইব্রেরিতে উপলব্ধ।";
       
       const imgContainer = document.getElementById('modalBookImgContainer');
       if (imageUrl && imageUrl !== '') {
@@ -604,144 +756,11 @@
 
     window.addEventListener('load', () => {
       startCounters();
-      loadHomeBooks();
     });
 
-    // 5. FETCH BOOKS FROM GOOGLE APPS SCRIPT FOR HOMEPAGE (3-4 books)
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxx-zCLcee_Z9T8WnZhuwAbtRPUh-vCbVslpx8D14Jx_99MjUKq-BGwNLN-3w9lcESeWA/exec";
 
-    function loadHomeBooks() {
-      const homeGrid = document.getElementById('homeBookGrid');
-      
-      // Fetching from Apps Script. If action=books parameter or default endpoint returns books array
-      fetch(SCRIPT_URL + "?type=books")
-        .then(response => response.json())
-        .then(data => {
-          // If the script returns general data or specific book list
-          // Let's handle both array of books or object with books key
-          let booksList = Array.isArray(data) ? data : (data.books || data.data || []);
-          
-          homeGrid.innerHTML = '';
-
-          if (booksList.length === 0) {
-            // Fallback sample data if sheets don't have book list structured yet
-            booksList = [
-              { title: "গীতাঞ্জলি", author: "রবীন্দ্রনাথ ঠাকুর", category: "উপন্যাস", status: "উপলব্ধ", image: "" },
-              { title: "অসমাপ্ত আত্মজীবনী", author: "শেখ মুজিবুর রহমান", category: "ইতিহাস", status: "উপলব্ধ", image: "" },
-              { title: "মহাবিশ্বের সংক্ষিপ্ত ইতিহাস", author: "স্টিফেন হকিং", category: "বিজ্ঞান", status: "ইস্যু করা", image: "" },
-              { title: "দিপু নম্বর টু", author: "মুহম্মদ জাফর ইকবাল", category: "শিশুতোষ", status: "উপলব্ধ", image: "" }
-            ];
-          }
-
-          // Take only first 4 books for the homepage preview
-          const displayBooks = booksList.slice(0, 4);
-
-          displayBooks.forEach(book => {
-            const title = book.Title || book.title || 'বইয়ের নাম';
-            const author = book.Author || book.author || 'লেখক';
-            const category = book.Category || book.category || 'সাধারণ';
-            const status = book.Status || book.status || 'উপলব্ধ';
-            const image = book.Image || book.image || book.ImageUrl || '';
-
-            const card = document.createElement('div');
-            card.className = "glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between";
-            
-            let imgHTML = '';
-            if (image && image.trim() !== '') {
-              imgHTML = `<div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center relative overflow-hidden">
-                <img src="${image}" alt="${title}" class="w-full h-full object-cover">
-                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">${category}</span>
-              </div>`;
-            } else {
-              imgHTML = `<div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
-                <span class="z-10">📖</span>
-                <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">${category}</span>
-              </div>`;
-            }
-
-            let statusHTML = status === 'উপলব্ধ' 
-              ? `<span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> ${status}</span>`
-              : `<span class="text-xs text-amber-600 font-semibold"><i class="fa-solid fa-clock ml-1"></i> ${status}</span>`;
-
-            card.innerHTML = `
-              <div>
-                ${imgHTML}
-                <h3 class="font-bold text-lg text-libGreen truncate">${title}</h3>
-                <p class="text-xs text-libText/70">${author}</p>
-              </div>
-              <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
-                ${statusHTML}
-                <button onclick="openBookModal('${title.replace(/'/g, "\\'")}', '${author.replace(/'/g, "\\'")}', '${category}', '${status}', '${image}')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
-              </div>
-            `;
-            homeGrid.appendChild(card);
-          });
-        })
-        .catch(error => {
-          console.error('Error fetching books:', error);
-          // Fallback view in case of network/script error
-          homeGrid.innerHTML = `
-            <div class="book-card novel glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
-              <div>
-                <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
-                  <span class="z-10">📕</span>
-                  <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">উপন্যাস</span>
-                </div>
-                <h3 class="font-bold text-lg text-libGreen book-title">গীতাঞ্জলি</h3>
-                <p class="text-xs text-libText/70 book-author">রবীন্দ্রনাথ ঠাকুর</p>
-              </div>
-              <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
-                <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
-                <button onclick="openBookModal('গীতাঞ্জলি', 'রবীন্দ্রনাথ ঠাকুর', 'উপন্যাস', 'উপলব্ধ', '')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
-              </div>
-            </div>
-            <div class="book-card history glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
-              <div>
-                <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
-                  <span class="z-10">📗</span>
-                  <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">ইতিহাস</span>
-                </div>
-                <h3 class="font-bold text-lg text-libGreen book-title">অসমাপ্ত আত্মজীবনী</h3>
-                <p class="text-xs text-libText/70 book-author">শেখ মুজিবুর রহমান</p>
-              </div>
-              <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
-                <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
-                <button onclick="openBookModal('অসমাপ্ত আত্মজীবনী', 'শেখ মুজিবুর রহমান', 'ইতিহাস', 'উপলব্ধ', '')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
-              </div>
-            </div>
-            <div class="book-card science glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
-              <div>
-                <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
-                  <span class="z-10">📘</span>
-                  <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">বিজ্ঞান</span>
-                </div>
-                <h3 class="font-bold text-lg text-libGreen book-title">মহাবিশ্বের সংক্ষিপ্ত ইতিহাস</h3>
-                <p class="text-xs text-libText/70 book-author">স্টিফেন হকিং</p>
-              </div>
-              <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
-                <span class="text-xs text-amber-600 font-semibold"><i class="fa-solid fa-clock ml-1"></i> ইস্যু করা</span>
-                <button onclick="openBookModal('মহাবিশ্বের সংক্ষিপ্ত ইতিহাস', 'স্টিফেন হকিং', 'বিজ্ঞান', 'ইস্যু করা', '')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
-              </div>
-            </div>
-            <div class="book-card kids glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition border border-libGold/20 flex flex-col justify-between">
-              <div>
-                <div class="h-44 bg-libCream rounded-lg mb-3 flex items-center justify-center text-5xl relative overflow-hidden">
-                  <span class="z-10">📙</span>
-                  <span class="absolute top-2 right-2 bg-libGreen text-white text-[10px] font-bold px-2 py-0.5 rounded">শিশুতোষ</span>
-                </div>
-                <h3 class="font-bold text-lg text-libGreen book-title">দিপু নম্বর টু</h3>
-                <p class="text-xs text-libText/70 book-author">মুহম্মদ জাফর ইকবাল</p>
-              </div>
-              <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
-                <span class="text-xs text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check ml-1"></i> উপলব্ধ</span>
-                <button onclick="openBookModal('দিপু নম্বর টু', 'মুহম্মদ জাফর ইকবাল', 'শিশুতোষ', 'উপলব্ধ', '')" class="text-xs bg-libGold/20 text-libGreen font-bold px-3 py-1.5 rounded hover:bg-libGold transition">বিস্তারিত</button>
-              </div>
-            </div>
-          `;
-        });
-    }
-
-    // 6. GOOGLE SPREADSHEET BLOOD DONOR INTEGRATION
+    // 5. GOOGLE SPREADSHEET BLOOD DONOR INTEGRATION WITH ANIMATED TOAST
     function submitDonorData(event) {
       event.preventDefault();
       
@@ -766,18 +785,18 @@
       })
       .then(response => response.json())
       .then(data => {
-        alert('অভিনন্দন! আপনার রক্তদাতা হিসেবে রেজিস্ট্রেশন সফলভাবে সম্পন্ন হয়েছে।');
         document.getElementById('donorForm').reset();
         closeModal('donorModal');
         submitBtn.innerText = "রেজিস্ট্রেশন সম্পন্ন করুন";
         submitBtn.disabled = false;
+        showToast('অভিনন্দন! আপনার রক্তদাতা হিসেবে রেজিস্ট্রেশন সফলভাবে সম্পন্ন হয়েছে।', 'success');
       })
       .catch(error => {
-        alert('অভিনন্দন! আপনার রক্তদাতা হিসেবে রেজিস্ট্রেশন সফলভাবে সম্পন্ন হয়েছে।');
         document.getElementById('donorForm').reset();
         closeModal('donorModal');
         submitBtn.innerText = "রেজিস্ট্রেশন সম্পন্ন করুন";
-        submitBtn.disabled = false;
+        submitBtn.disabled, false;
+        showToast('অভিনন্দন! আপনার রক্তদাতা হিসেবে রেজিস্ট্রেশন সফলভাবে সম্পন্ন হয়েছে।', 'success');
       });
     }
 
@@ -795,7 +814,7 @@
 
           resultContainer.innerHTML = '';
 
-          if (matchedDonors.length === 0) {
+          if (matchedDonors.length ===0) {
             resultContainer.innerHTML = `<p class="text-xs text-center text-libTerracotta py-4">এই মুহূর্তে ${group} গ্রুপের কোনো রক্তদাতা পাওয়া যায়নি।</p>`;
             return;
           }
